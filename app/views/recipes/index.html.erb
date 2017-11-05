@@ -1,0 +1,8 @@
+<h1>All Recipes:</h1>
+<ul>
+  <% if @recipes != nil %>
+    <% @recipes.each do |recipe| %>
+      <a href=<%= recipe_path(recipe) %>><li><%= recipe.name %></li></a>
+    <% end %>
+  <% end %>
+</ul>
