@@ -32,3 +32,11 @@
     <% end %>
   </ul>
 <% end %>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
+
+<ul id="myUL">
+  <% @items.each do |item| %>
+    <li><a href="#"><%= item.name %></a></li>
+  <% end %>
+</ul>

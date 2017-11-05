@@ -9,7 +9,8 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @items = Item.all
     @recipe = Recipe.new
   end
-  
+
 end
