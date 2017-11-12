@@ -14,21 +14,53 @@
 //= require turbolinks
 //= require_tree .
 
-function myFunction() {
-    // Declare variables
-    var input, filter, ul, li, a, i;
-    input = document.getElementById('myInput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName('li');
+// ingredients = document.getElementsByClassName("ingredient");
+//
+// function myFunction() {
+//     // Declare variables
+//     var input, filter, ul, li, a, i;
+//     input = document.getElementById('myInput');
+//     filter = input.value.toUpperCase();
+//     ul = document.getElementById("myUL");
+//     li = ul.getElementsByTagName('li');
+//
+//     // Loop through all list items, and hide those who don't match the search query
+//     // should be able to add hidden to each element by default and then remove it here instead of hiding the others.
+//
+//     for (i = 0; i < li.length; i++) {
+//         a = li[i].getElementsByTagName("a")[0];
+//         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//             li[i].style.display = "";
+//         } else {
+//             li[i].style.display = "none";
+//         }
+//     }
+// }
+//
+// function addIngredient(name) {
+//   console.log(name);
+// }
+//
+// for (var i=0;i< ingredients.length;i++){
+//   ingredients[i].addEventListener('click', function() {
+//     console.log(this.dataset.id)
+//     })
+// }
 
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
+
+$( document ).ready(function() {
+
+  let $search = $('#searchInput')
+  $search.on('keyup', function(){
+    console.log($search.val());
+  });
+
+  $('#itemList').children().on('click', event => {
+    console.log($(event.currentTarget).text())
+  });
+
+});
+
+// $('#searchInput').on('change', function(){
+//   console.log('testing...');
+// });
