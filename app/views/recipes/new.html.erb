@@ -1,0 +1,55 @@
+<h1>Enter new recipe details below:</h1>
+<%= form_for(@recipe) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+  <%= f.label :servings %><br />
+    <%= f.number_field :servings %>
+  </div>
+
+  <div class="field">
+  <%= f.label :duration, "Duration (in minutes)" %><br />
+    <%= f.number_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directions %><br />
+    <%= f.text_field :directions %>
+  </div>
+
+  <div class="field">
+    <%= f.label :initial_ingredients, "Ingredients (seperate with a comma)" %><br />
+    <%= f.text_field :initial_ingredients %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
+
+<ul id="myUL">
+  <% @items.each do |item| %>
+    <li><a href="#" data-id="<%= item.id %>" id="item_<%= item.id %>" class="ingredient" ><%= item.name %></a></li>
+  <% end %>
+</ul> -->
+
+<!-- <input type="text" id="searchInput" placeholder="Search for ingredients..">
+
+<ul id="itemList">
+  <% @items.each do |item| %>
+    <li class="ingredient"><%= item.name %></li>
+  <% end %>
+</ul> -->

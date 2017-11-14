@@ -1,0 +1,42 @@
+<h1>Edit page for <%= @recipe.name %></h1>
+
+<%= form_for(@recipe) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+  <%= f.label :servings %><br />
+    <%= f.number_field :servings %>
+  </div>
+
+  <div class="field">
+  <%= f.label :duration, "Duration (in minutes)" %><br />
+    <%= f.number_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directions %><br />
+    <%= f.text_field :directions %>
+  </div>
+
+  <div class="field">
+    <%= f.label :initial_ingredients, "Ingredients (seperate with a comma)" %><br />
+    <%= f.text_field :initial_ingredients %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
