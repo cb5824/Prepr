@@ -1,7 +1,9 @@
-<h1>All items:</h1>
+<h1 class='text_box'>All items:</h1>
+<div class='text_box'>
 <ul>
 <% if @items != nil %>
   <% @items.each do |item| %>
     <li><%= item.name %></li>
   <% end %>
 <% end %>
+</div>

@@ -14,8 +14,14 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @recipe = Recipe.find(params['id'])
+    if params['list_id'] != nil
+      @list = List.find(params['list_id'])
+      @recipe.items.each do |item|
+        @list.items << item
+      end
+      redirect_to edit_list_path(@list)
+    end
   end
 
   def update
@@ -64,7 +70,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-  params.require(:recipe).permit(:name, :servings, :duration, :directions, :initial_ingredients)
+  params.require(:recipe).permit(:name, :servings, :duration, :directions, :initial_ingredients, :list_id)
   end
 
 end
