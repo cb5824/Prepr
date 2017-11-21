@@ -21,11 +21,7 @@
     <%= f.text_field :directions %>
   </div>
 
-  <div class="field">
-    <%= f.label :initial_ingredients, "Ingredients (seperate with a comma)" %><br />
-    <%= f.text_field :initial_ingredients %>
-  </div>
-
+  <%= f.hidden_field :ingredients, value: @ingredients %>
 
 
   <div class="actions">
@@ -40,4 +36,18 @@
     <% end %>
   </ul>
 <% end %>
+</div>
+<div class='text_box'>
+<%= text_field_tag :ingredient_name %>
+<%= text_field_tag :ingredient_quantity %>
+<button type="button" class='add-ingredient' data-name="<%= @recipe.name %>">Add ingredient</button >
+<!-- <%= link_to "add ingredient", api_v1_recipe_path, class: 'add-ingredient', method: :put, remote: true %> -->
+<!-- <%= form_for @recipe, remote: true, :html => { :id => "add-ingredient" } do |f|     %>
+  <%= f.text_field  :new_ingredient           %>
+  <%= f.text_field  :new_ingredient_quantity  %>
+  <%= f.submit                                %>
+<% end %> -->
+<h3>Ingredients:</h3>
+<ul id='ingredients-list'>
+</ul>
 </div>

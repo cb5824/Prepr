@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(version: 20171114020333) do
     t.integer "servings", null: false
     t.integer "duration", null: false
     t.text "directions", null: false
-    t.text "initial_ingredients"
+    t.text "new_ingredient_quantity"
+    t.text "new_ingredient"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

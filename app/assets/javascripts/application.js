@@ -46,9 +46,28 @@
 //     console.log(this.dataset.id)
 //     })
 // }
-
-
 $( document ).ready(function() {
+
+$('.add-ingredient').on('click', (event) =>{
+  event.preventDefault()
+  let ingredient_name = $('#ingredient_name').val()
+  let ingredient_quantity = $('#ingredient_quantity').val()
+
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { iname: ingredient_name, iquantity: ingredient_quantity},
+    url: '/api/v1/recipes/1'
+  })
+
+  request.done(() => {
+   // console.log('done')
+   $('#ingredients-list').append('<li>' + ingredient_name + '</li>')
+ })
+
+})
+
+
+
 
   let $search = $('#searchInput')
   $search.on('keyup', function(){
