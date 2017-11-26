@@ -52,11 +52,12 @@ $('.add-ingredient').on('click', (event) =>{
   event.preventDefault()
   let ingredient_name = $('#ingredient_name').val()
   let ingredient_quantity = $('#ingredient_quantity').val()
-
+  let recipeId = $('#recipe_id_field').val()
+  let address = $('#recipe_route').val()
   let request = $.ajax({
     method: 'PATCH',
-    data: { iname: ingredient_name, iquantity: ingredient_quantity},
-    url: '/api/v1/recipes/1'
+    data: { id: recipeId, iname: ingredient_name, iquantity: ingredient_quantity},
+    url: address
   })
 
   request.done(() => {

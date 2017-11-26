@@ -37,10 +37,13 @@
   </ul>
 <% end %>
 </div>
+<input type='hidden' value='<%= @recipe.id %>' id='recipe_id_field'>
+<input type='hidden' value='<%= api_v1_recipe_path (@recipe) %>' id='recipe_route'>
 <div class='text_box'>
 <%= text_field_tag :ingredient_name %>
 <%= text_field_tag :ingredient_quantity %>
-<button type="button" class='add-ingredient' data-name="<%= @recipe.name %>">Add ingredient</button >
+
+<button type="button" class='add-ingredient' data-recipe-id="<%= @recipe.id %>">Add ingredient</button >
 <!-- <%= link_to "add ingredient", api_v1_recipe_path, class: 'add-ingredient', method: :put, remote: true %> -->
 <!-- <%= form_for @recipe, remote: true, :html => { :id => "add-ingredient" } do |f|     %>
   <%= f.text_field  :new_ingredient           %>
