@@ -1,0 +1,29 @@
+<h1 class='text_box'>Edit List</h1>
+<div class='text_box'>
+
+<h2>Current line items</h2>
+<ul id='line-items'>
+  <% if @list.items[0] != nil %>
+    <% @list.items.each do |item| %>
+      <li><%= item.name %></li>
+    <% end %>
+  <% else %>
+    <li>Nothing yet...</li>
+  <% end %>
+</ul>
+<h2>Select recipes to add</h2>
+<% @recipes.each do |recipe| %>
+  <div class='recipe'>
+    <%= link_to recipe.name, edit_list_recipe_path(@list, recipe) %></a>
+  </div>
+<% end %>
+</div>
+
+<input type='hidden' value='<%= @list.id %>' id='list_id_field'>
+<input type='hidden' value='<%= api_v1_list_path (@list) %>' id='list_route'>
+<div class='text_box'>
+<input type="text" name="item_name" id="item_name" placeholder="New Item Name">
+<input type="text" name="item_quantity" id="item_quantity" placeholder="New Item Quantity">
+
+
+<button type="button" class='add-item' data-list-id="<%= @list.id %>">Add Individual Item</button>

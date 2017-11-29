@@ -40,8 +40,9 @@
 <input type='hidden' value='<%= @recipe.id %>' id='recipe_id_field'>
 <input type='hidden' value='<%= api_v1_recipe_path (@recipe) %>' id='recipe_route'>
 <div class='text_box'>
-<%= text_field_tag :ingredient_name %>
-<%= text_field_tag :ingredient_quantity %>
+<input type="text" name="ingredient_name" id="ingredient_name" placeholder="New Ingredient Name">
+<input type="text" name="ingredient_quantity" id="ingredient_quantity" placeholder="New Ingredient Quantity">
+
 
 <button type="button" class='add-ingredient' data-recipe-id="<%= @recipe.id %>">Add ingredient</button >
 <!-- <%= link_to "add ingredient", api_v1_recipe_path, class: 'add-ingredient', method: :put, remote: true %> -->
@@ -52,5 +53,9 @@
 <% end %> -->
 <h3>Ingredients:</h3>
 <ul id='ingredients-list'>
+  <% @recipe.ingredients.each do |ingredient| %>
+  <% item = Item.find(ingredient.item.id) %>
+    <li><%= item.name %>, <%= ingredient.quantity %></li>
+  <% end %>
 </ul>
 </div>

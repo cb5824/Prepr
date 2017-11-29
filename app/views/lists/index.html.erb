@@ -1,0 +1,9 @@
+<h1 class='text_box'>Previous Lists:</h1>
+<div class='text_box'>
+<ul>
+<% if @lists != nil %>
+  <% @lists.each do |list| %>
+    <li><a href="<%= edit_list_path(list) %>"><%= list.created_at %></a></li>
+  <% end %>
+<% end %>
+</div>

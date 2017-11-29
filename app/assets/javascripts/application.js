@@ -48,6 +48,8 @@
 // }
 $( document ).ready(function() {
 
+// *************************RECIPES*********************************
+
 $('.add-ingredient').on('click', (event) =>{
   event.preventDefault()
   let ingredient_name = $('#ingredient_name').val()
@@ -61,14 +63,38 @@ $('.add-ingredient').on('click', (event) =>{
   })
 
   request.done(() => {
-   // console.log('done')
-   $('#ingredients-list').append('<li>' + ingredient_name + '</li>')
+   $('#ingredients-list').append('<li>' + ingredient_name + ', ' + ingredient_quantity + '</li>')
+   $('#ingredient_name').val('')
+   $('#ingredient_quantity').val('')
+
+ })
+
+})
+
+// *************************LISTS*********************************
+
+$('.add-item').on('click', (event) =>{
+  event.preventDefault()
+  let item_name = $('#item_name').val()
+  let item_quantity = $('#item_quantity').val()
+  let listId = $('#list_id_field').val()
+  let address = $('#list_route').val()
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { id: listId, iname: item_name, iquantity: item_quantity},
+    url: address
+  })
+
+  request.done(() => {
+   $('#line-items').append('<li>' + item_name + '</li>')
+   $('#item_name').val('')
+   $('#item_quantity').val('')
  })
 
 })
 
 
-
+// *************************OTHER*********************************
 
   let $search = $('#searchInput')
   $search.on('keyup', function(){

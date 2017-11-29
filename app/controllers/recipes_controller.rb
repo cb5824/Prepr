@@ -15,14 +15,22 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @recipe = Recipe.find(params['id'])
+
+    if params['list_id']
+      list = List.find(params['list_id'])
+      @recipe.items.each do |item|
+        list.items << item
+      end
+      redirect_to edit_list_path(list)
+    end
+    # binding.pry
   end
 
 
   def update
     @recipe = Recipe.find(params['id'])
-    
+
     if @recipe.update_attributes(recipe_params)
 
       # ingredients = recipe_params['initial_ingredients'].split(', ')

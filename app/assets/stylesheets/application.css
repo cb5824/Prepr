@@ -58,3 +58,7 @@ body{
   border: 8px solid black;
   border-radius: 20px;
 }
+
+.text_box a{
+  color: #8e3026;
+}
