@@ -2,22 +2,24 @@
 <div class='text_box'>
 
 <h2>Current line items</h2>
-<ul id='line-items'>
+<ul id='line-items' class='unmarked_list'>
   <% if @list.items[0] != nil %>
     <% @list.items.each do |item| %>
-      <li><%= item.name %></li>
+      <li><div class='item_listing'><%= item.name %></div><%=image_tag("xsmall.jpg", class: 'delete_img', data: { item_id: item.id, list_id: @list.id })%></li>
     <% end %>
   <% else %>
     <li>Nothing yet...</li>
   <% end %>
 </ul>
 <h2>Select recipes to add</h2>
-<% @recipes.each do |recipe| %>
-  <div class='recipe'>
-    <%= link_to recipe.name, edit_list_recipe_path(@list, recipe) %></a>
+<ul class='unmarked_list'>
+  <% @recipes.each do |recipe| %>
+    <div class='recipe'>
+      <li data-recipe-id='<%= recipe.id %>'><%= recipe.name %></li>
+    </div>
+  <% end %>
   </div>
-<% end %>
-</div>
+</ul>
 
 <input type='hidden' value='<%= @list.id %>' id='list_id_field'>
 <input type='hidden' value='<%= api_v1_list_path (@list) %>' id='list_route'>

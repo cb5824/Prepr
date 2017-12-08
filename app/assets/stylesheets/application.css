@@ -62,3 +62,23 @@ body{
 .text_box a{
   color: #8e3026;
 }
+
+.delete_img {
+  border-radius: 50%;
+}
+
+.item_listing, .recipe{
+  background-color: #A0302C;
+  border: 1px solid black;
+  top: 50%;
+  height: 24px;
+  line-height: 24px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.unmarked_list{
+list-style-type: none;
+}
