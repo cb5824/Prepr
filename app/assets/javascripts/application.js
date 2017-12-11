@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
 
 // ingredients = document.getElementsByClassName("ingredient");
@@ -46,9 +45,86 @@
 //     console.log(this.dataset.id)
 //     })
 // }
-
-
 $( document ).ready(function() {
+
+// *************************RECIPES*********************************
+
+$('.add-ingredient').on('click', (event) =>{
+  event.preventDefault()
+  let ingredient_name = $('#ingredient_name').val()
+  let ingredient_quantity = $('#ingredient_quantity').val()
+  let recipeId = $('#recipe_id_field').val()
+  let address = $('#recipe_route').val()
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { id: recipeId, iname: ingredient_name, iquantity: ingredient_quantity},
+    url: address
+  })
+
+  request.done(() => {
+   $('#ingredients-list').append('<li>' + ingredient_name + ', ' + ingredient_quantity + '</li>')
+   $('#ingredient_name').val('')
+   $('#ingredient_quantity').val('')
+ })
+})
+
+$('.recipe').on('click', (event) =>{
+  let recipeId = event.target.dataset.recipeId;
+  let listId = $('#list_id_field').val();
+  let address = $('#list_route').val();
+  let request = $.ajax({
+    method: 'PATCH',
+    data: {id: listId, recipe_id: recipeId},
+    url: address
+  });
+
+  request.done((items) =>{
+    items.forEach(function(element) {
+      $('#line-items').append('<li><div class="item_listing">' + element[0] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
+    });
+  });
+});
+
+// *************************LISTS*********************************
+
+$('.add-item').on('click', (event) =>{
+  event.preventDefault()
+  let item_name = $('#item_name').val()
+  let item_quantity = $('#item_quantity').val()
+  let listId = $('#list_id_field').val()
+  let address = $('#list_route').val()
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { id: listId, iname: item_name, iquantity: item_quantity},
+    url: address
+  })
+
+  request.done(() => {
+    debugger
+   $('#line-items').append('<li>' + item_name + '</li>')
+   $('#item_name').val('')
+   $('#item_quantity').val('')
+ })
+
+})
+
+$('#line-items').on('click', '.delete_img', event =>{
+  event.preventDefault();
+  let itemId = event.target.dataset.itemId;
+  let listId = $('#list_id_field').val()
+  let address = $('#list_route').val()
+
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { id: listId, item_id: itemId },
+    url: address
+  })
+  request.done(() => {
+    event.target.parentElement.remove()
+  })
+})
+
+// *************************OTHER*********************************
 
   let $search = $('#searchInput')
   $search.on('keyup', function(){

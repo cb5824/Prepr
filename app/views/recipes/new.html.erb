@@ -1,4 +1,5 @@
-<h1>Enter new recipe details below:</h1>
+<h1 class='text_box'>Enter new recipe details below:</h1>
+<div class='text_box'>
 <%= form_for(@recipe) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
@@ -20,14 +21,10 @@
     <%= f.text_field :directions %>
   </div>
 
-  <div class="field">
-    <%= f.label :initial_ingredients, "Ingredients (seperate with a comma)" %><br />
-    <%= f.text_field :initial_ingredients %>
-  </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
 
 <% if @errors %>
@@ -37,19 +34,4 @@
     <% end %>
   </ul>
 <% end %>
-
-<!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
-
-<ul id="myUL">
-  <% @items.each do |item| %>
-    <li><a href="#" data-id="<%= item.id %>" id="item_<%= item.id %>" class="ingredient" ><%= item.name %></a></li>
-  <% end %>
-</ul> -->
-
-<!-- <input type="text" id="searchInput" placeholder="Search for ingredients..">
-
-<ul id="itemList">
-  <% @items.each do |item| %>
-    <li class="ingredient"><%= item.name %></li>
-  <% end %>
-</ul> -->
+</div>

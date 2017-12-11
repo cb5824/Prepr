@@ -45,3 +45,40 @@
  #myUL li a:hover:not(.header) {
      background-color: #eee; /* Add a hover effect to all links, except for headers */
  }
+
+body{
+  background-color: hsl(2, 57%, 40%);
+  background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px), repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px), repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+}
+
+.text_box{
+  background-color: #302f2e;
+  color: #ffffff;
+  padding: 20px;
+  border: 8px solid black;
+  border-radius: 20px;
+}
+
+.text_box a{
+  color: #8e3026;
+}
+
+.delete_img {
+  border-radius: 50%;
+}
+
+.item_listing, .recipe{
+  background-color: #A0302C;
+  border: 1px solid black;
+  top: 50%;
+  height: 24px;
+  line-height: 24px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.unmarked_list{
+list-style-type: none;
+}

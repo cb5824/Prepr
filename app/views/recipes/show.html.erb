@@ -1,8 +1,10 @@
-<h1><%= @recipe.name %></h1>
-<br>
+<h1 class='text_box'><%= @recipe.name %></h1>
+<div class='text_box'>
 <h2>Ingredients:</h2>
 <ul>
-  <% @recipe.items.each do |item| %>
-    <li><%= item.name %></li>
+  <% @recipe.ingredients.each do |ingredient| %>
+  <% item = Item.find(ingredient.item.id) %>
+    <li><%= item.name %>, <%= ingredient.quantity %></li>
   <% end %>
-</ul>  
+</ul>
+</div>

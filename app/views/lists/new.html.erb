@@ -1,0 +1,10 @@
+<h1 class='text_box'>New List</h1>
+<div class='text_box'>
+
+<h2>Select recipes to add</h2>
+<% @recipes.each do |recipe| %>
+  <div class='recipe'>
+    <a href=<%= edit_list_recipe_path(@list, recipe) %>><%= recipe.name %></a>
+  </div>
+<% end %>
+</div>
