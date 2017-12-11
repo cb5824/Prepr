@@ -10,7 +10,7 @@ class Api::V1::ListsController < ApplicationController
     binding.pry
   end
 
-  def update #there is a bug here somewhere... it tries to create an item
+  def update
     @list = List.find(params['id'])
     @result = []
     if params['item_id']
@@ -22,6 +22,9 @@ class Api::V1::ListsController < ApplicationController
         recipe = Recipe.find(params['recipe_id'])
         recipe.items.each do |item|
           @list.items << item
+          recipe_listing = Ingredient.find_by(recipe_id: recipe.id, item_id: item.id)
+          listing = Lineitem.find_by(item_id: item.id, list_id: @list.id)
+          listing.amount = recipe_listing.quantity
           @result << [item.name, item.id]
         end
 
@@ -36,7 +39,7 @@ class Api::V1::ListsController < ApplicationController
         @result << [@new_item.name, @new_item.id]
       end
     end
-    # @result = [@list.items]
+    binding.pry
     render json: @result, status: :ok
   end
 

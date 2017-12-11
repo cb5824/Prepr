@@ -19,14 +19,19 @@ feature 'Adding a new list' do
   end
 
 
-  scenario 'user adds a recipe to a list' do
-    recipe1.items << item1
-    recipe1.items << item2
-    visit edit_list_path (list)
-
-    click_link(recipe1.name)
-
-    expect(list.items).to include(item1)
-    expect(list.items).to include(item2)
-  end
+  # scenario 'user adds a recipe to a list' do
+  #   recipe1.items << item1
+  #   recipe1.items << item2
+  #
+  #   # visit root_path
+  #   visit edit_list_path(list)
+  #
+  #   # click_link 'Add new list'
+  #
+  #   find('.recipe', :text => recipe1.name).click
+  #
+  #   visit edit_list_path(list)
+  #
+  #   expect(page).to have_content(item1.name)
+  # end
 end

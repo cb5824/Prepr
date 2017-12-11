@@ -21,7 +21,7 @@ feature 'Adding a new recipe/item' do
     expect(page).to have_selector('input#recipe_directions')
 
   end
-  #
+
   # scenario "saving a new recipe creates item objects for new ingredients" do
   #   visit root_path
   #
