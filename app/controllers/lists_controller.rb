@@ -14,4 +14,9 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @recipes = Recipe.all
   end
+
+  def show
+    @list = List.find(params[:id])
+    @listings = @list.get_list_items
+  end
 end
