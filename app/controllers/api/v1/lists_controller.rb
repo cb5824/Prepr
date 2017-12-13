@@ -25,7 +25,8 @@ class Api::V1::ListsController < ApplicationController
           recipe_listing = Ingredient.find_by(recipe_id: recipe.id, item_id: item.id)
           listing = Lineitem.find_by(item_id: item.id, list_id: @list.id)
           listing.amount = recipe_listing.quantity
-          @result << [item.name, item.id]
+          listing.save
+          @result << [item.name, item.id, listing.amount]
         end
 
       else
@@ -35,11 +36,10 @@ class Api::V1::ListsController < ApplicationController
         else
           @new_item = Item.find_by(name: params['iname'])
         end
-        @new_line_item = Lineitem.create(item_id: @new_item.id, list_id: @list.id)
-        @result << [@new_item.name, @new_item.id]
+        @new_line_item = Lineitem.create(item_id: @new_item.id, list_id: @list.id, amount: params['iquantity'])
+        @result << [@new_item.name, @new_item.id, @new_line_item.amount]
       end
     end
-    binding.pry
     render json: @result, status: :ok
   end
 

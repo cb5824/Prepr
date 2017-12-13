@@ -80,7 +80,7 @@ $('.recipe').on('click', (event) =>{
 
   request.done((items) =>{
     items.forEach(function(element) {
-      $('#line-items').append('<li><div class="item_listing">' + element[0] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
+      $('#line-items').append('<li><div class="item_listing">' + element[0] + ', ' + element[2] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
     });
   });
 });
@@ -99,9 +99,8 @@ $('.add-item').on('click', (event) =>{
     url: address
   })
 
-  request.done(() => {
-    debugger
-   $('#line-items').append('<li>' + item_name + '</li>')
+  request.done((element) => {
+  $('#line-items').append('<li><div class="item_listing">' + element[0][0] + ', ' + element[0][2] + '</div> <img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
    $('#item_name').val('')
    $('#item_quantity').val('')
  })
