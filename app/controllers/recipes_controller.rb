@@ -53,17 +53,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    # ingredients = recipe_params['initial_ingredients'].split(', ')
-    #
-    # ingredients.each do |ingredient|
-    #   if (Item.find_by name: ingredient).nil?
-    #     new_item = Item.new(name: ingredient)
-    #   else
-    #     new_item = Item.find_by name: ingredient
-    #   end
-    #     @recipe.items << new_item
-    # end
-
     if @recipe.save
       redirect_to edit_recipe_path(@recipe), notice: 'Recipe was saved successfully, add ingredient amounts here!'
     else

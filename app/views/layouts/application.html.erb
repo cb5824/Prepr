@@ -10,6 +10,18 @@
   <body>
     <div class='text_box'>
       <%= link_to 'HOME', root_path %>
+      <% if user_signed_in? %>
+        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to "My Account", edit_user_registration_path %></li>
+        <% if current_user.store %>
+          <li>Current Store: <%= current_user.store.name %>, <%= current_user.store.address %></li>
+        <% end %>
+        <li> <a href='<%= stores_path %>'>Set Home Store</a></li>
+      <% else %>
+        <li><%= link_to 'Sign In', new_user_session_path %></li>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <% end %>
+
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

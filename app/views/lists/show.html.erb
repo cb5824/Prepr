@@ -1,6 +1,14 @@
 <div class='text_box'>
 <% @listings.each do |listing| %>
-<p>____ <%= listing[0].name %>: <%= listing[1] %></p>
+  <% if Location.find_by(store_id: @store.id, item_id: listing[0].id) %>
+    <% item_location = (Location.find_by(store_id: @store.id, item_id: listing[0].id)).isle %>
+  <% else %>
+    <% item_location = "__" %>
+  <% end %>
+  <input type="number" class="isle-entry" placeholder="isle" data-item-id="<%= listing[0].id %>" max="99">
+  <p class="list-line">_<%= item_location %>_ <%= listing[0].name %>: <%= listing[1] %></p>
+  <br>
 <% end %>
+<button type="button" id='update-isles' data-store-id="<%= @store.id %>">Update Isles</button >
 
 </div>

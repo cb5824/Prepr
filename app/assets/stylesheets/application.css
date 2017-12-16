@@ -82,3 +82,11 @@ body{
 .unmarked_list{
 list-style-type: none;
 }
+
+.isle-entry, .list-line{
+  display: inline;
+}
+
+.isle-entry{
+  width:  40px;
+}
