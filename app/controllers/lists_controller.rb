@@ -18,5 +18,12 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @listings = @list.get_list_items
+    @store = current_user.store
+    @locations = Location.where(store_id: @store.id)
   end
+
+  def update
+
+  end
+
 end

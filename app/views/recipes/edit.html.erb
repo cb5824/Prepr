@@ -1,5 +1,7 @@
-<h1 class='text_box'>Edit page for <%= @recipe.name %></h1>
 <div class='text_box'>
+<h1>Edit page for <%= @recipe.name %></h1>
+<hr>
+  <div class="recipe_block">
 <%= form_for(@recipe) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
@@ -18,7 +20,7 @@
 
   <div class="field">
     <%= f.label :directions %><br />
-    <%= f.text_field :directions %>
+    <%= f.text_area :directions %>
   </div>
 
   <%= f.hidden_field :ingredients, value: @ingredients %>
@@ -28,7 +30,7 @@
     <%= f.submit %>
   </div>
 <% end %>
-
+</div>
 <% if @errors %>
   <ul>
     <% @errors.each do |error| %>
@@ -36,6 +38,15 @@
     <% end %>
   </ul>
 <% end %>
+<div class="ingredient_block">
+<h3>Ingredients:</h3>
+<ul id='ingredients-list'>
+  <% @recipe.ingredients.each do |ingredient| %>
+  <% item = Item.find(ingredient.item.id) %>
+  <li><%= item.name %>, <%= ingredient.quantity %></li>
+  <% end %>
+</ul>
+</div>
 </div>
 <input type='hidden' value='<%= @recipe.id %>' id='recipe_id_field'>
 <input type='hidden' value='<%= api_v1_recipe_path (@recipe) %>' id='recipe_route'>
@@ -51,11 +62,4 @@
   <%= f.text_field  :new_ingredient_quantity  %>
   <%= f.submit                                %>
 <% end %> -->
-<h3>Ingredients:</h3>
-<ul id='ingredients-list'>
-  <% @recipe.ingredients.each do |ingredient| %>
-  <% item = Item.find(ingredient.item.id) %>
-    <li><%= item.name %>, <%= ingredient.quantity %></li>
-  <% end %>
-</ul>
 </div>

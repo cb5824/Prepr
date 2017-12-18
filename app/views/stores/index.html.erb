@@ -1,0 +1,29 @@
+<div class='text_box'>
+<h1>Add a new store:</h1>
+  <%= form_for(@store) do |f| %>
+  <div class="field">
+    <%= f.label :name, "Store name" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "Store address" %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+</div>
+
+<div class='text_box'>
+<h1>Existing Stores:</h1>
+<ul>
+<% if @stores != nil %>
+  <% @stores.each do |store| %>
+    <li><a href="<%= store_path(store) %>"><%= store.name %>, <%= store.address %></a></li>
+  <% end %>
+<% end %>
+</div>
