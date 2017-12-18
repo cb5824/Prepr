@@ -21,4 +21,9 @@ class ListsController < ApplicationController
     @store = current_user.store
     @locations = Location.where(store_id: @store.id)
   end
+
+  def update
+
+  end
+
 end

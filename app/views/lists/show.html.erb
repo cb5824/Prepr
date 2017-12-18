@@ -1,14 +1,20 @@
-<div class='text_box'>
+<% if current_user.store %>
+<li class="text_box">Current Store: <%= current_user.store.name %>, <%= current_user.store.address %></li>
+<% end %>
+<div class='text_box list_display'>
 <% @listings.each do |listing| %>
   <% if Location.find_by(store_id: @store.id, item_id: listing[0].id) %>
     <% item_location = (Location.find_by(store_id: @store.id, item_id: listing[0].id)).isle %>
   <% else %>
     <% item_location = "__" %>
   <% end %>
-  <input type="number" class="isle-entry" placeholder="isle" data-item-id="<%= listing[0].id %>" max="99">
+  <input type="number" class="isle-entry" placeholder="isle" data-item-id="<%= listing[0].id %>" max="99", min="1">
   <p class="list-line">_<%= item_location %>_ <%= listing[0].name %>: <%= listing[1] %></p>
-  <br>
+<br>
 <% end %>
 <button type="button" id='update-isles' data-store-id="<%= @store.id %>">Update Isles</button >
 
 </div>
+<input type='hidden' value='<%= @store.id %>' id='store_id_field'>
+<input type='hidden' value='<%= api_v1_store_path (@store) %>' id='store_route'>
+<input type='hidden' value='<%= @list.id %>' id='list_id_field'>

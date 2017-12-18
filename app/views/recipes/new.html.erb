@@ -1,5 +1,6 @@
-<h1 class='text_box'>Enter new recipe details below:</h1>
 <div class='text_box'>
+<h1>Enter new recipe details below:</h1>
+<hr>
 <%= form_for(@recipe) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
@@ -18,7 +19,7 @@
 
   <div class="field">
     <%= f.label :directions %><br />
-    <%= f.text_field :directions %>
+    <%= f.text_area :directions %>
   </div>
 
   <div class="actions">

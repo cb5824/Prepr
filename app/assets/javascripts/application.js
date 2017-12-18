@@ -123,6 +123,29 @@ $('#line-items').on('click', '.delete_img', event =>{
   })
 })
 
+$('#update-isles').on('click', (event) =>{
+  event.preventDefault();
+  let storeId = $('#store_id_field').val()
+  let listId = $('#list_id_field').val()
+  let address = $('#store_route').val()
+  let entries = $('.isle-entry');
+
+  let pairs = []
+  Array.from(entries).forEach(function(entry){
+    let value = $(entry).val();
+    pairs.push([entry.dataset.itemId, value])
+  })
+
+  let request = $.ajax({
+    method: 'PATCH',
+    data: { id: storeId, pairs: pairs, list_id:listId },
+    url: address
+  })
+  request.done((path) => {
+    window.location.reload();
+  })
+
+})
 // *************************OTHER*********************************
 
   let $search = $('#searchInput')

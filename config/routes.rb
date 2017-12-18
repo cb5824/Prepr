@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipes
       resources :lists
+      resources :stores
     end
   end
   root to: "homes#index"
