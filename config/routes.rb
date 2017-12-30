@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :items
   resources :recipes
   resources :stores
+  resources :users
   resources :lists do
     resources :items
     resources :recipes

@@ -13,3 +13,17 @@
 <a class="nav-link" href=<%= new_list_path %>>Add new list</a>
 <a class="nav-link" href=<%= lists_path %>>Previous Lists</a>
 </div>
+
+<div class="top_recipe_block">
+  <p>Most Recent Recipes:</p>
+  <hr>
+  <% @recent_recipes.each do |recipe| %>
+    <a href="<%= recipe_path(recipe) %>">
+        <img src="<%= recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='default.png';">
+
+  </a>
+
+    <p class="top_recipe_listing"><%= recipe.name %></p>
+    <br>
+  <% end %>
+</div>

@@ -24,9 +24,10 @@ feature 'Store selection/saving' do
     fill_in('Store address', :with => '779 McGrath Hwy, Somerville, MA 02145')
 
     click_button('Create Store')
-binding.pry
-    expect(current_user.store.name).to eq('Stop and Shop')
-    expect(current_user.store.address).to eq('779 McGrath Hwy, Somerville, MA 02145')
+
+    test_user = User.all[0]
+    expect(test_user.store.name).to eq('Stop and Shop')
+    expect(test_user.store.address).to eq('779 McGrath Hwy, Somerville, MA 02145')
 
   end
 
