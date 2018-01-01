@@ -55,6 +55,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to edit_recipe_path(@recipe), notice: 'Recipe was saved successfully, add ingredient amounts here!'
     else

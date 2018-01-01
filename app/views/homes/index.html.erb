@@ -1,4 +1,4 @@
-<!-- <h1 class='text_box'>Prepr Dashboard</h1> -->
+
 <div id='logo'>
   <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Emojione_1F95E.svg/480px-Emojione_1F95E.svg.png' alt='Prepr'>
   <p id='title'>
@@ -19,7 +19,7 @@
   <hr>
   <% @recent_recipes.each do |recipe| %>
     <a href="<%= recipe_path(recipe) %>">
-        <img src="<%= recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='default.png';">
+        <img src="<%= recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
 
   </a>
 

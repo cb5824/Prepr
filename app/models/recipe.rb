@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :items, :through => :ingredients
+  belongs_to :user
   validates :name, uniqueness: true
 
   def get_items

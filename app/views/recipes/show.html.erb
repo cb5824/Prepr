@@ -1,9 +1,12 @@
 <div class='text_box'>
 <h1><%= @recipe.name %></h1>
+<h3>By: <%= @recipe.user.username %></h3>
 <h4>Servings: <%= @recipe.servings %> / Duration: <%= @recipe.duration %> min</h4>
 </div>
 <div class='text_box'>
+<% if current_user == @recipe.user %>
 <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+<% end %>
 <h2>Ingredients:</h2>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>

@@ -26,7 +26,8 @@
 
 
   <div class="field">
-    <p>Current Image: <%= image_tag @recipe.image, class: 'recipe_icon', onerror: 'this.error=null;this.src="default.png"' %></p>
+    <p>Current Image: <img src="<%= @recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+</p>
 
       <br>
     <%= f.label :image, "Image URL" %><br />

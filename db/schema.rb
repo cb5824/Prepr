@@ -57,9 +57,11 @@ ActiveRecord::Schema.define(version: 20171219020553) do
     t.text "directions", null: false
     t.text "new_ingredient_quantity"
     t.text "new_ingredient"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image", default: "default.png"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
