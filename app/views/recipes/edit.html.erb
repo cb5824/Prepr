@@ -23,6 +23,17 @@
     <%= f.text_area :directions %>
   </div>
 
+
+
+  <div class="field">
+    <p>Current Image: <img src="<%= @recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+</p>
+
+      <br>
+    <%= f.label :image, "Image URL" %><br />
+    <%= f.text_field :image %>
+  </div>
+
   <%= f.hidden_field :ingredients, value: @ingredients %>
 
 

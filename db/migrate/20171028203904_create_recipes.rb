@@ -7,6 +7,7 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
       t.text :directions, null: false
       t.text :new_ingredient_quantity
       t.text :new_ingredient
+      t.belongs_to :user
       t.timestamps
     end
   end

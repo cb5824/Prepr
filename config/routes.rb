@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   resources :items
   resources :recipes
   resources :stores
+  resources :users
   resources :lists do
     resources :items
     resources :recipes

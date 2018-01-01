@@ -4,5 +4,6 @@ FactoryBot.define do
     servings 2
     duration 40
     directions "Put things in a bowl, mix it up, bake, serve, delicious"
+    user
   end
 end
