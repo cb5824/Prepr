@@ -12,4 +12,18 @@ class Recipe < ApplicationRecord
     end
     result
   end
+
+  def favorite_of(user)
+    hearts = Favorite.where(user_id: user.id, recipe_id: self.id)
+    hearts[0] != nil
+  end
+
+  def make_favorite_of(user)
+    Favorite.create(user_id: user.id, recipe_id: self.id)
+  end
+
+  def unfavorite_of(user)
+    hearts = Favorite.find_by(user_id: user.id, recipe_id: self.id)
+    hearts.destroy
+  end
 end

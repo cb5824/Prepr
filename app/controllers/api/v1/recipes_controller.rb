@@ -13,16 +13,24 @@ class Api::V1::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params['id'])
-
-    if Item.find_by(name: params['iname']).nil?
-      @new_ingredient = Item.create(name: params['iname'])
+    if params['heart_action']
+      case params['heart_action']
+      when 'favorite'
+        @recipe.make_favorite_of(current_user)
+      when 'unfavorite'
+        @recipe.unfavorite_of(current_user)
+      end
     else
-      @new_ingredient = Item.find_by(name: params['iname'])
+      if Item.find_by(name: params['iname']).nil?
+        @new_ingredient = Item.create(name: params['iname'])
+      else
+        @new_ingredient = Item.find_by(name: params['iname'])
+      end
+      # @recipe.items << @new_ingredient
+      # @ingredient_listing = @recipe.ingredients.where(item_id: @new_ingredient.id)
+      # @ingredient_listing.last.quantity = params['iquantity']
+      @ingredient_listing = Ingredient.create(item_id: @new_ingredient.id, recipe_id: @recipe.id, quantity: params['iquantity'])
     end
-    # @recipe.items << @new_ingredient
-    # @ingredient_listing = @recipe.ingredients.where(item_id: @new_ingredient.id)
-    # @ingredient_listing.last.quantity = params['iquantity']
-    @ingredient_listing = Ingredient.create(item_id: @new_ingredient.id, recipe_id: @recipe.id, quantity: params['iquantity'])
   end
 
   private

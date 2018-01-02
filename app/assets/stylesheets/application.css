@@ -146,7 +146,6 @@ list-style-type: none;
 .ingredient_block{
   display: inline-block;
   vertical-align: top;
-  align
 }
 
 .list_display{
@@ -180,4 +179,10 @@ list-style-type: none;
     height: 100px;
     vertical-align: text-top;
 
+}
+
+.heart{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }

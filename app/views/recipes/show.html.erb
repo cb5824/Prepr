@@ -5,8 +5,19 @@
 </div>
 <div class='text_box'>
 <% if current_user == @recipe.user %>
-<%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
 <% end %>
+
+<div id='favorite-icon'>
+<% if user_signed_in? %>
+  <% if @recipe.favorite_of(current_user) %>
+    <%=image_tag("heart-filled.png", id: 'unfavorite_button', class: 'heart', data: { recipe_id: @recipe.id, action: 'unfavorite', address: api_v1_recipe_path(@recipe) })%>
+  <% else %>
+    <%=image_tag("heart-blank.png", id: 'favorite_button', class: 'heart', data: { recipe_id: @recipe.id, action: 'favorite', address: api_v1_recipe_path(@recipe)  })%>
+  <% end %>
+<% end %>
+</div>
+
 <h2>Ingredients:</h2>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
