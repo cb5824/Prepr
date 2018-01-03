@@ -51,7 +51,6 @@ feature 'Favoriting recipes' do
     recipe2.make_favorite_of(user)
 
     most_favorite = Recipe.top_five
-
     expect(most_favorite[0][0]).to eq(recipe3)
     expect(most_favorite[1][0]).to eq(recipe2)
   end

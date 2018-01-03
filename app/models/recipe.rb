@@ -36,4 +36,17 @@ class Recipe < ApplicationRecord
     top_five = (all_recipes.sort_by{|x,y|y}).pop(5).reverse
     top_five
   end
+
+  def add_ingredients(ingredient_array)
+
+    ingredient_array.each do |ingredient|
+      new_ingredient = nil
+      if Item.find_by(name: ingredient[1]).nil?
+        new_ingredient = Item.create(name: ingredient[1])
+      else
+        new_ingredient = Item.find_by(name: ingredient[1])
+      end
+      ingredient_listing = Ingredient.create(item_id: new_ingredient.id, recipe_id: self.id, quantity: ingredient[0])
+    end
+  end
 end

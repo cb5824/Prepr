@@ -189,3 +189,11 @@ list-style-type: none;
   height: 30px;
   cursor: pointer;
 }
+
+.recipe_listing{
+  display: inline-block;
+}
+
+#recent_recipe_block, #favorite_recipe_block{
+  display: inline-block;
+}
