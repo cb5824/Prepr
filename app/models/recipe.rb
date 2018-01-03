@@ -26,4 +26,14 @@ class Recipe < ApplicationRecord
     hearts = Favorite.find_by(user_id: user.id, recipe_id: self.id)
     hearts.destroy
   end
+
+  def self.top_five
+    all_recipes = []
+    Recipe.all.each do |recipe|
+      favs = Favorite.where(recipe_id: recipe.id)
+      all_recipes << [recipe, favs.length]
+    end
+    top_five = (all_recipes.sort_by{|x,y|y}).pop(5).reverse
+    top_five
+  end
 end

@@ -23,7 +23,23 @@
 
   </a>
 
-    <p class="top_recipe_listing"><%= recipe.name %></p>
+    <a href="<%= recipe_path(recipe)%>"><p class="top_recipe_listing"><%= recipe.name %></p></a>
+    <p class="top_recipe_listing">by: <%= recipe.user.username %></p>
+    <br>
+  <% end %>
+</div>
+
+<div class="top_recipe_block">
+  <p>Most Favorited Recipes:</p>
+  <hr>
+  <% @top_recipes.each do |recipe| %>
+    <a href="<%= recipe_path(recipe[0]) %>">
+        <img src="<%= recipe[0].image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+
+  </a>
+
+    <a href="<%= recipe_path(recipe[0])%>"><p class="top_recipe_listing"><%= recipe[0].name %></p></a>
+    <p class="top_recipe_listing">Favorites: <%= recipe[1] %></p>
     <br>
   <% end %>
 </div>
