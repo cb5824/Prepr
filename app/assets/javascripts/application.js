@@ -85,6 +85,38 @@ $('.recipe').on('click', (event) =>{
   });
 });
 
+$('#favorite-icon').on('click', '#favorite_button', (event) =>{
+  event.preventDefault()
+  let recipeId = event.target.dataset.recipeId;
+  let action = event.target.dataset.action;
+  let address = event.target.dataset.address;
+  let request = $.ajax({
+    method: 'PATCH',
+    data: {id: recipeId, heart_action: action},
+    url: address
+  });
+  request.done(() =>{
+    let icon_code = $('#favorite-icon')
+    icon_code[0].innerHTML = ('<img id="unfavorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="unfavorite" data-address="/api/v1/recipes/1" src="/assets/heart-filled-92a4382eed0b3b1417747370c9229d12f4f4b41f790008e850d84f371826c5c9.png" alt="Heart filled">')
+  });
+});
+
+$('#favorite-icon').on('click', '#unfavorite_button', (event) =>{
+  event.preventDefault()
+  let recipeId = event.target.dataset.recipeId;
+  let action = event.target.dataset.action;
+  let address = event.target.dataset.address;
+  let request = $.ajax({
+    method: 'PATCH',
+    data: {id: recipeId, heart_action: action},
+    url: address
+  });
+  request.done(() =>{
+
+    let icon_code = $('#favorite-icon')
+    icon_code[0].innerHTML = ('<img id="favorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="favorite" data-address="/api/v1/recipes/1" src="/assets/heart-blank-c876bb4abea6eabc6c618611ef3ceb32d2b8784c768449ec38a4bb546a2f73c7.png" alt="Heart blank">')
+  });
+});
 // *************************LISTS*********************************
 
 $('.add-item').on('click', (event) =>{

@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :store, optional: true
   has_many :recipes
+  has_many :recipes, :through => :favorites
 end

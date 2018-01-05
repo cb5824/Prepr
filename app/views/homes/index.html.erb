@@ -14,16 +14,33 @@
 <a class="nav-link" href=<%= lists_path %>>Previous Lists</a>
 </div>
 
-<div class="top_recipe_block">
+<div class="top_recipe_block" id="recent_recipe_block">
   <p>Most Recent Recipes:</p>
   <hr>
   <% @recent_recipes.each do |recipe| %>
+  <div class="recipe_listing">
     <a href="<%= recipe_path(recipe) %>">
-        <img src="<%= recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+      <img src="<%= recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+    </a>
+    <a href="<%= recipe_path(recipe)%>"><p class="top_recipe_listing"><%= recipe.name %></p></a>
+    <p class="top_recipe_listing">by: <%= recipe.user.username %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="top_recipe_block" id="favorite_recipe_block">
+  <p>Most Favorited Recipes:</p>
+  <hr>
+  <% @top_recipes.each do |recipe| %>
+  <div class="recipe_listing">
+
+    <a href="<%= recipe_path(recipe[0]) %>">
+        <img src="<%= recipe[0].image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
 
   </a>
 
-    <p class="top_recipe_listing"><%= recipe.name %></p>
-    <br>
+    <a href="<%= recipe_path(recipe[0])%>"><p class="top_recipe_listing"><%= recipe[0].name %></p></a>
+    <p class="top_recipe_listing">Favorites: <%= recipe[1] %></p>
+  </div>
   <% end %>
 </div>

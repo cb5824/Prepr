@@ -146,7 +146,6 @@ list-style-type: none;
 .ingredient_block{
   display: inline-block;
   vertical-align: top;
-  align
 }
 
 .list_display{
@@ -174,10 +173,27 @@ list-style-type: none;
   text-align: center;
   font-size: 24px;
   position: relative;
+  margin: 0px;
 }
-.top_recipe_listing{
-    display: inline-block;
-    height: 100px;
-    vertical-align: text-top;
 
+.top_recipe_block .recipe_icon{
+  float: left;
+}
+
+.top_recipe_listing{
+    display: block;
+}
+
+.heart{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.recipe_listing{
+  display: inline-block;
+}
+
+#recent_recipe_block, #favorite_recipe_block{
+  display: inline-block;
 }
