@@ -184,7 +184,7 @@ list-style-type: none;
     display: block;
 }
 
-.heart{
+.heart, .dropdown-arrow{
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -196,4 +196,26 @@ list-style-type: none;
 
 #recent_recipe_block, #favorite_recipe_block{
   display: inline-block;
+}
+
+.dropdown-arrow{
+  float: right;
+}
+
+.arrow-active{
+  transform: rotate(90deg);
+}
+.hide{
+  display: none;
+}
+
+#list-overlay{
+  background-color: rgba(48,47,46,0.95);
+  height: 1000px;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  border: 4px solid black;
+
 }

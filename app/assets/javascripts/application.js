@@ -46,6 +46,12 @@
 //     })
 // }
 $( document ).ready(function() {
+// *************************NAV BAR*********************************
+
+$('#list-dropdown').on('click', (event) =>{
+  $('#list-dropdown').toggleClass('arrow-active')
+  $('#list-overlay').toggleClass('hide')
+})
 
 // *************************RECIPES*********************************
 
