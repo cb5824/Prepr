@@ -8,6 +8,7 @@ before_action :authenticate_user!
 
   def new
     @list = List.new
+    @list.user = current_user
     @list.save
     redirect_to edit_list_path (@list)
   end

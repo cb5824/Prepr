@@ -6,4 +6,5 @@ class User < ApplicationRecord
   belongs_to :store, optional: true
   has_many :recipes
   has_many :recipes, :through => :favorites
+  has_many :lists
 end

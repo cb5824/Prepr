@@ -21,6 +21,15 @@
       <%=image_tag("right-arrow.png", id: 'list-dropdown', class: 'dropdown-arrow')%>
     </div>
     <div id="list-overlay" class="hide">
+      <% if user_signed_in? && @list != nil %>
+      <ul>
+        <% @list.items.each do |item| %>
+          <li><%= item.name %></li>
+        <% end %>
+      </ul>
+      <% elsif user_signed_in? == false %>
+        <p>Sign in to create lists</p>
+      <% end %>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
