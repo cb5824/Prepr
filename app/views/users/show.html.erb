@@ -9,8 +9,8 @@
 <% end %>
 <h3>Recipes created:</h3>
 <ul>
-  <% if @user.recipes %>
-    <% @user.recipes.each do |recipe| %>
+  <% if @created_recipes != [] %>
+    <% @created_recipes.each do |recipe| %>
       <li><a href="<%= recipe_path(recipe) %>"><%= recipe.name %></a></li>
     <% end %>
   <% else %>
