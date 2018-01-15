@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :recipes
       resources :lists
       resources :stores
+      resources :users
     end
   end
   root to: "homes#index"

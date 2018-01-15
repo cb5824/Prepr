@@ -6,40 +6,33 @@ class Api::V1::ListsController < ApplicationController
     render json: lists
   end
 
+  def new
+    List.create(user_id: current_user.id)
+    if current_user.lists.length > 2
+      current_user.lists.first.destroy
+    end
+  end
+
   def edit
     binding.pry
   end
 
   def update
-    @list = List.find(params['id'])
     @result = []
-    if params['item_id']
-      lineitem = Lineitem.find_by(item_id: params['item_id'], list_id: @list.id)
-      lineitem.destroy
-    else
-
-      if params['recipe_id']
-        recipe = Recipe.find(params['recipe_id'])
-        recipe.items.each do |item|
-          @list.items << item
-          recipe_listing = Ingredient.find_by(recipe_id: recipe.id, item_id: item.id)
-          listing = Lineitem.find_by(item_id: item.id, list_id: @list.id)
-          listing.amount = recipe_listing.quantity
-          listing.save
-          @result << [item.name, item.id, listing.amount]
-        end
-
-      else
-
-        if Item.find_by(name: params['iname']).nil?
-          @new_item = Item.create(name: params['iname'])
-        else
-          @new_item = Item.find_by(name: params['iname'])
-        end
-        @new_line_item = Lineitem.create(item_id: @new_item.id, list_id: @list.id, amount: params['iquantity'])
-        @result << [@new_item.name, @new_item.id, @new_line_item.amount]
-      end
+    if params['list_action'] == "delete"
+      deleted_item = Item.find(params['item_id'])
+      @current_list.delete_list_item(deleted_item)
     end
+
+    if params['list_action'] == "add-item"
+      @result << @current_list.add_list_item(params['iname'], params['iquantity'], current_user.store)
+    end
+
+    if params['list_action'] == "add-recipe"
+      added_recipe = Recipe.find(params['recipe_id'])
+      @result << @current_list.add_recipe_items(added_recipe, current_user.store)
+    end
+
     render json: @result, status: :ok
   end
 

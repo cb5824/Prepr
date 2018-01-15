@@ -110,6 +110,7 @@
   padding-right: 5px;
   display: inline-block;
   vertical-align: top;
+  color: #ffffff;
 }
 
 .recipe{
@@ -212,10 +213,29 @@ list-style-type: none;
 #list-overlay{
   background-color: rgba(48,47,46,0.95);
   height: 1000px;
-  width: 300px;
+  width: 500px;
   position: absolute;
   right: 0;
   z-index: 1;
   border: 4px solid black;
   margin-right: 4px;
+  color: #ffffff;
+}
+
+#list-overlay a, #list-overlay a:visited{
+  color: #6b7bd2;
+  padding-left: 40px;
+}
+
+.home_store_block{
+  background-color: #21170d;
+  color: #ffffff;
+  border: 4px solid black;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.home_store_block li{
+  list-style: none;
+  text-align: center;
 }

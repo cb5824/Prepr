@@ -9,7 +9,7 @@
     <% item_location = "__" %>
   <% end %>
   <input type="number" class="isle-entry" placeholder="isle" data-item-id="<%= listing[0].id %>" max="99", min="1">
-  <p class="list-line">_<%= item_location %>_ <%= listing[0].name %>: <%= listing[1] %></p>
+  <p class="list-line">_<%= item_location %>_ <%= listing[0].name %></p>
 <br>
 <% end %>
 <button type="button" id='update-isles' data-store-id="<%= @store.id %>">Update Isles</button >

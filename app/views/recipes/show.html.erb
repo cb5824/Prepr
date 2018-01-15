@@ -25,6 +25,13 @@
     <li><%= item.name %>, <%= ingredient.quantity %></li>
   <% end %>
 </ul>
+<% if @current_user.store.nil? %>
+  <%= link_to "Set home store to create lists", user_path(current_user.id) %>
+<% else %>
+
+<button type="button" class='add-recipe-to-list' data-action="add-recipe" data-list-id="<%= @current_list.id %>" data-recipe-id="<%= @recipe.id %>">Add ingredients to list</button>
+<input type='hidden' value='<%= api_v1_list_path (@current_list) %>' id='list_route'>
+<% end %>
 <h2>Directions:</h2>
 <p><%= @recipe.directions %></p>
 </div>

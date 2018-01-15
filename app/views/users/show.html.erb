@@ -2,11 +2,13 @@
 <p>Username: <%= @user.username %></p>
 <p>Email: <%= @user.email %></p>
 <%= link_to "Change Password/Email", edit_user_registration_path(@user) %>
-<% if @user.store %>
-  <p>Home Store: <%= @user.store.name %>, <%= @user.store.address %></p>
-<% else %>
-  <%= link_to "Select Home Store", stores_path %>
-<% end %>
+<p id="home_store_listing">
+  <% if @user.store %>
+    Home Store: <%= @user.store.name %>, <%= @user.store.address %>
+  <% else %>
+    Home Store: None selected, set home store below
+  <% end %>
+</p>
 <h3>Recipes created:</h3>
 <ul>
   <% if @created_recipes != [] %>
@@ -16,5 +18,13 @@
   <% else %>
     <li> None yet...
   <% end %>
+</ul>
+<hr>
+<input type="text" name="store_name" id="store_name" placeholder="Store Name">
+<input type="text" name="store_address" id="store_address" placeholder="Search near address">
+<button type="button" class='search_store'>Search for Store</button >
+<ul>
+<div id="store_search_results" data-user-id="<%= current_user.id %>">
+</div>
 </ul>
 </div>
