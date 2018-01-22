@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   def edit
     super
-       
+
   end
   # GET /resource/sign_up
   # def new

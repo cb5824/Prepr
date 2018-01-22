@@ -3,12 +3,8 @@ class HomesController < ApplicationController
     @recipe_array = Recipe.all.sort_by {|recipe| recipe.created_at}
     @recent_recipes = @recipe_array[0..3]
     @top_recipes = Recipe.top_five
-    if user_signed_in?
-      if current_user.lists[0].nil?
-        @list = List.new
-      else
-        @list = current_user.lists[0]
-      end
+    if user_signed_in? && current_user.lists[0].nil?
+      @current_list = List.create(user_id: current_user.id)
     end
   end
 end

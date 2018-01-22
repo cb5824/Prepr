@@ -18,13 +18,26 @@
 <% end %>
 </div>
 
-<h2>Ingredients:</h2>
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-  <% item = Item.find(ingredient.item.id) %>
-    <li><%= item.name %>, <%= ingredient.quantity %></li>
+<div class="half-screen-block">
+  <h2>Ingredients:</h2>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+    <% item = Item.find(ingredient.item.id) %>
+      <li><%= item.name %>, <%= ingredient.quantity %></li>
+    <% end %>
+  </ul>
+  <% if user_signed_in? %>
+    <% if @current_user.store.nil? %>
+      <%= link_to "Set home store to create lists", user_path(current_user.id) %>
+    <% else %>
+
+    <button type="button" class='add-recipe-to-list' data-action="add-recipe" data-list-id="<%= @current_list.id %>" data-recipe-id="<%= @recipe.id %>">Add ingredients to list</button>
+    <input type='hidden' value='<%= api_v1_list_path (@current_list) %>' id='list_route'>
+    <% end %>
   <% end %>
-</ul>
-<h2>Directions:</h2>
-<p><%= @recipe.directions %></p>
+</div>
+<div class="half-screen-block recipe_directions_block">
+  <h2>Directions:</h2>
+  <p><%= simple_format(@recipe.directions) %></p>
+</div>
 </div>

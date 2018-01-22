@@ -48,51 +48,54 @@
 $( document ).ready(function() {
 // *************************NAV BAR*********************************
 
-$('#list-dropdown').on('click', (event) =>{
-  $('#list-dropdown').toggleClass('arrow-active')
-  $('#list-overlay').toggleClass('hide')
-})
+$('.current-list-button').on('click', (event) =>{
+  $('#list-dropdown').toggleClass('arrow-active');
+  $('#list-overlay').toggleClass('hide');
+});
 
 // *************************RECIPES*********************************
 
 $('.add-ingredient').on('click', (event) =>{
-  event.preventDefault()
-  let ingredient_name = $('#ingredient_name').val()
-  let ingredient_quantity = $('#ingredient_quantity').val()
-  let recipeId = $('#recipe_id_field').val()
-  let address = $('#recipe_route').val()
+  event.preventDefault();
+  let ingredient_name = $('#ingredient_name').val();
+  let ingredient_quantity = $('#ingredient_quantity').val();
+  let recipeId = $('#recipe_id_field').val();
+  let address = $('#recipe_route').val();
   let request = $.ajax({
     method: 'PATCH',
     data: { id: recipeId, iname: ingredient_name, iquantity: ingredient_quantity},
     url: address
-  })
+  });
 
   request.done(() => {
-   $('#ingredients-list').append('<li>' + ingredient_name + ', ' + ingredient_quantity + '</li>')
-   $('#ingredient_name').val('')
-   $('#ingredient_quantity').val('')
- })
-})
+   $('#ingredients-list').append('<li>' + ingredient_name + ', ' + ingredient_quantity + '</li>');
+   $('#ingredient_name').val('');
+   $('#ingredient_quantity').val('');
+ });
+});
 
-$('.recipe').on('click', (event) =>{
+$('.add-recipe-to-list').on('click', (event) =>{
   let recipeId = event.target.dataset.recipeId;
-  let listId = $('#list_id_field').val();
+  let listId = event.target.dataset.listId;
+  let action = event.target.dataset.action;
   let address = $('#list_route').val();
   let request = $.ajax({
     method: 'PATCH',
-    data: {id: listId, recipe_id: recipeId},
+    data: {id: listId, recipe_id: recipeId, list_action: action},
     url: address
   });
 
   request.done((items) =>{
-    items.forEach(function(element) {
-      $('#line-items').append('<li><div class="item_listing">' + element[0] + ', ' + element[2] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
+    $('#list-overlay').removeClass('hide');
+    $('#list-dropdown').addClass('arrow-active');
+    items[0].forEach(function(element) {
+      $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
     });
   });
 });
 
 $('#favorite-icon').on('click', '#favorite_button', (event) =>{
-  event.preventDefault()
+  event.preventDefault();
   let recipeId = event.target.dataset.recipeId;
   let action = event.target.dataset.action;
   let address = event.target.dataset.address;
@@ -102,13 +105,13 @@ $('#favorite-icon').on('click', '#favorite_button', (event) =>{
     url: address
   });
   request.done(() =>{
-    let icon_code = $('#favorite-icon')
-    icon_code[0].innerHTML = ('<img id="unfavorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="unfavorite" data-address="/api/v1/recipes/1" src="/assets/heart-filled-92a4382eed0b3b1417747370c9229d12f4f4b41f790008e850d84f371826c5c9.png" alt="Heart filled">')
+    let icon_code = $('#favorite-icon');
+    icon_code[0].innerHTML = ('<img id="unfavorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="unfavorite" data-address="/api/v1/recipes/1" src="/assets/heart-filled-92a4382eed0b3b1417747370c9229d12f4f4b41f790008e850d84f371826c5c9.png" alt="Heart filled">');
   });
 });
 
 $('#favorite-icon').on('click', '#unfavorite_button', (event) =>{
-  event.preventDefault()
+  event.preventDefault();
   let recipeId = event.target.dataset.recipeId;
   let action = event.target.dataset.action;
   let address = event.target.dataset.address;
@@ -119,84 +122,190 @@ $('#favorite-icon').on('click', '#unfavorite_button', (event) =>{
   });
   request.done(() =>{
 
-    let icon_code = $('#favorite-icon')
-    icon_code[0].innerHTML = ('<img id="favorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="favorite" data-address="/api/v1/recipes/1" src="/assets/heart-blank-c876bb4abea6eabc6c618611ef3ceb32d2b8784c768449ec38a4bb546a2f73c7.png" alt="Heart blank">')
+    let icon_code = $('#favorite-icon');
+    icon_code[0].innerHTML = ('<img id="favorite_button" class="heart" data-recipe-id="' + recipeId + '" data-action="favorite" data-address="/api/v1/recipes/1" src="/assets/heart-blank-c876bb4abea6eabc6c618611ef3ceb32d2b8784c768449ec38a4bb546a2f73c7.png" alt="Heart blank">');
   });
 });
 // *************************LISTS*********************************
 
 $('.add-item').on('click', (event) =>{
-  event.preventDefault()
-  let item_name = $('#item_name').val()
-  let item_quantity = $('#item_quantity').val()
-  let listId = $('#list_id_field').val()
-  let address = $('#list_route').val()
+  event.preventDefault();
+  let item_name = $('#item_name').val();
+  let item_quantity = $('#item_quantity').val();
+  let listId = $('#list_id_field').val();
+  let action = event.target.dataset.action;
+  let address = $('#list_route').val();
   let request = $.ajax({
     method: 'PATCH',
-    data: { id: listId, iname: item_name, iquantity: item_quantity},
+    data: { id: listId, iname: item_name, iquantity: item_quantity, list_action: action},
     url: address
-  })
-
+  });
   request.done((element) => {
-  $('#line-items').append('<li><div class="item_listing">' + element[0][0] + ', ' + element[0][2] + '</div> <img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
-   $('#item_name').val('')
-   $('#item_quantity').val('')
- })
+  $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
+   $('#item_name').val('');
+   $('#item_quantity').val('');
+ });
 
-})
+});
 
 $('#line-items').on('click', '.delete_img', event =>{
   event.preventDefault();
   let itemId = event.target.dataset.itemId;
-  let listId = $('#list_id_field').val()
-  let address = $('#list_route').val()
-
+  let listId = event.target.dataset.listId;
+  let address = $('#list_route').val();
+  let action = "delete";
   let request = $.ajax({
     method: 'PATCH',
-    data: { id: listId, item_id: itemId },
+    data: { id: listId, item_id: itemId, list_action: action },
     url: address
-  })
+  });
   request.done(() => {
-    event.target.parentElement.remove()
-  })
-})
+    event.target.parentElement.remove();
+  });
+});
 
 $('#update-isles').on('click', (event) =>{
   event.preventDefault();
-  let storeId = $('#store_id_field').val()
-  let listId = $('#list_id_field').val()
-  let address = $('#store_route').val()
+  let storeId = $('#store_id_field').val();
+  let listId = $('#list_id_field').val();
+  let address = $('#store_route').val();
   let entries = $('.isle-entry');
 
-  let pairs = []
+  let pairs = [];
   Array.from(entries).forEach(function(entry){
     let value = $(entry).val();
-    pairs.push([entry.dataset.itemId, value])
-  })
+    pairs.push([entry.dataset.itemId, value]);
+  });
 
   let request = $.ajax({
     method: 'PATCH',
     data: { id: storeId, pairs: pairs, list_id:listId },
     url: address
-  })
+  });
   request.done((path) => {
     window.location.reload();
-  })
+  });
+});
 
-})
+$('#new-list').on('click', (event) =>{
+  event.preventDefault();
+  let address = event.target.dataset.address;
+  let request = $.ajax({
+    method: 'GET',
+    data: {},
+    url: address
+  });
+  request.done(() =>{
+  $('#line-items')[0].innerHTML = "";
+  });
+});
+
+$('#sort-list').on('click', (event) =>{
+  let isles = $('#line-items')[0].children;
+  // Array.from(isles).forEach(function(isle){
+  //   debugger
+ // if (isNaN(parseInt(isle.innerHTML))) {
+ //   unmarked_isle_array.push(isle);
+ // } else {
+ //   isle_array.push(isle);
+ // }
+ //  });
+ //  debugger
+ let isle_array = Array.from(isles).sort(function(a, b) {
+
+   let item1 = null;
+   let item2 = null;
+   if (a.children[1].innerHTML == "__") {
+     item1 = 100;
+   } else {
+     item1 = parseInt(a.children[1].innerHTML); // ignore upper and lowercase
+   }
+   if (b.children[1].innerHTML == "__") {
+     item2 = 100;
+   } else {
+     item2 = parseInt(b.children[1].innerHTML); // ignore upper and lowercase
+   }
+
+   if (item1 < item2) {
+     return -1;
+   }
+   if (item1 > item2) {
+     return 1;
+   }
+
+   // names must be equal
+   return 0;
+ });
+  $('#line-items')[0].innerHTML = '';
+  isle_array.forEach(function(line) {
+    $('#line-items').append(line);
+  });
+});
 // *************************OTHER*********************************
 
-  let $search = $('#searchInput')
+  let $search = $('#searchInput');
   $search.on('keyup', function(){
     console.log($search.val());
   });
 
   $('#itemList').children().on('click', event => {
-    console.log($(event.currentTarget).text())
+    console.log($(event.currentTarget).text());
   });
+
+  $('.search_store').on('click', (event) =>{
+    event.preventDefault();
+    let storeName = $('#store_name').val();
+    let storeAddress = $('#store_address').val();
+
+    let request = $.ajax({
+      url: 'https://api.foursquare.com/v2/venues/search',
+        method: 'GET',
+        data: {
+          client_id: 'IXXGGDREOMC2LWHFFHFOPHTCJDC3E53CRZ2XZDAXG22MQJ55',
+          client_secret: '0O5WIOYJLEJFLULDA5K5DANAJIASKBS15EKS1JH4XO4SPAG2',
+          near: storeAddress,
+          query: storeName,
+          limit: 10,
+          v: '20170801',
+        }
+    });
+    request.done((result) =>{
+      result.response.venues.forEach(function(store){
+      let full_address = store.location.formattedAddress.join(', ')
+      let coordinates = store.location.lat + ', ' + store.location.lng
+
+      $('#store_search_results').append(`<div class="home_store_block">
+      <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=600x300&maptype=roadmap&markers=color:red|label:!|` + full_address + `&key=AIzaSyCwoIv_svzZ2pO14Eu_fQq3R-Ia1WGzQKg">
+      <li>` + store.name + `: ` + full_address + `</li>
+      <button type="button" class="set_home_store">Choose this store!</button>
+      </div><br>`);
+      })
+    });
+  });
+
+  $('#store_search_results').on('click', '.set_home_store', event =>{
+    let listing = event.target.previousElementSibling.innerText.split(': ');
+    let storeName = listing[0];
+    let storeAddress = listing[1];
+    let id = $('#store_search_results')[0].dataset.userId;
+    let address = '/api/v1/users/' + id + '/edit'
+    let request = $.ajax({
+      url: address,
+      method: 'GET',
+      data: { store_name: storeName, store_address: storeAddress, id: id }
+    });
+    request.done(() =>{
+      $('#home_store_listing')[0].innerText = 'Home Store: ' + storeName + ', ' + storeAddress;
+      alert("Home location changed!");
+    });
+  });
+
 
 });
 
+
+
+// (function(a, b){ if(a.getElementsByClassName('div')[0].innerHTML > b.getElementsByClassName('div')[0].innerHTML){ return a-b} else {return b-a}})
 // $('#searchInput').on('change', function(){
 //   console.log('testing...');
 // });
