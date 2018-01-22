@@ -8,47 +8,60 @@
   </head>
 
   <body>
-    <div class='text_box'>
-      <li class="nav-link"><%= link_to 'HOME', root_path %></li>
-      <% if user_signed_in? %>
-        <li class="nav-link"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-        <li class="nav-link"><%= link_to "My Account", user_path(current_user.id) %></li>
-        <li class="nav-link"> <a href='<%= stores_path %>'>Set Home Store</a></li>
-      <% else %>
-        <li class="nav-link"><%= link_to 'Sign In', new_user_session_path %></li>
-        <li class="nav-link"><%= link_to "Sign Up", new_user_registration_path %></li>
-      <% end %>
-      <%=image_tag("right-arrow.png", id: 'list-dropdown', class: 'dropdown-arrow')%>
+    <div class='text_box top-bar'>
+      <div class="top-bar-left">
+        <li class="nav-link"><%= link_to 'HOME', root_path %></li>
+        <% if user_signed_in? %>
+          <li class="nav-link"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+          <li class="nav-link"><%= link_to "My Account", user_path(current_user.id) %></li>
+        <% else %>
+          <li class="nav-link"><%= link_to 'Sign In', new_user_session_path %></li>
+          <li class="nav-link"><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      </div>
+      <div class="top-bar-right">
+        <a class="nav-link" href=<%= recipes_path %>>List of all recipes</a>
+        <a class="nav-link" href=<%= new_recipe_path %>>Add new recipe</a>
+        <a class="nav-link" href=<%= lists_path %>>Previous Lists</a>
+        <div class="nav-link current-list-button"><p>Current List</p><%=image_tag("right-arrow.png", id: 'list-dropdown', class: 'dropdown-arrow')%></div>
+      </div>
     </div>
     <div id="list-overlay" class="hide">
       <% if user_signed_in? && @current_list != nil %>
         <% if @current_user.store.nil? %>
           <%= link_to "Set home store to create lists", user_path(current_user.id) %>
         <% else %>
+          <br>
           <input type='hidden' value='<%= api_v1_list_path (@current_list) %>' id='list_route'>
-          <input type="text" name="item_name" id="item_name" placeholder="New Item Name">
           <input type="text" name="item_quantity" id="item_quantity" placeholder="New Item Quantity">
+          <input type="text" name="item_name" id="item_name" placeholder="New Item Name">
           <button type="button" class='add-item' data-action="add-item" data-list-id="<%= @current_list.id %>">Add Individual Item</button>
           <div class="list_display">
+
             <% if @current_list.items[0] != nil %>
               <ul id='line-items' class='unmarked_list'>
+
                 <% @current_list.get_list_items.each do |listing| %>
                   <% if Location.find_by(store_id: current_user.store.id, item_id: listing[0].id) %>
                     <% item_location = (Location.find_by(store_id: current_user.store.id, item_id: listing[0].id)).isle %>
                   <% else %>
                     <% item_location = "__" %>
                   <% end %>
-                  <li><%=image_tag("xsmall.jpg", class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<%= item_location %>_ <div class='item_listing'><%= listing[1] %> <%= listing[0].name %></div></li>
+                  <li><%=image_tag("xsmall.jpg", class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<div class="item_isle"><%= item_location %></div>_ <div class='item_listing'><%= listing[1] %> <%= listing[0].name %></div></li>
                 <% end %>
               </ul>
-              <%= link_to "Update Isles", list_path(@current_list) %>
             <% else %>
               <ul id='line-items' class='unmarked_list'>
                 <li>Nothing yet...</li>
               </ul>
           <% end %>
-          <button type="button" id="new-list" data-address="<%= new_api_v1_list_path %>">New List</button>
+          <%= link_to "Update Isles", list_path(@current_list) %>
+          <br>
+          <br>
         </div>
+        <button type="button" id="sort-list">Sort List By Isle</button>
+        <button type="button" id="new-list" data-address="<%= new_api_v1_list_path %>">New List</button>
+
         <% end %>
       <% elsif user_signed_in? == false %>
         <p>Sign in to create lists</p>

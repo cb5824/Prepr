@@ -18,6 +18,7 @@ feature 'recipes' do
     recipe.items << item1
     recipe.items << item2
 
+    sign_in_user
     visit recipes_path
     click_link recipe.name
     expect(page).to have_content(item1.name)

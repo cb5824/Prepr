@@ -48,7 +48,7 @@
 $( document ).ready(function() {
 // *************************NAV BAR*********************************
 
-$('#list-dropdown').on('click', (event) =>{
+$('.current-list-button').on('click', (event) =>{
   $('#list-dropdown').toggleClass('arrow-active');
   $('#list-overlay').toggleClass('hide');
 });
@@ -89,7 +89,7 @@ $('.add-recipe-to-list').on('click', (event) =>{
     $('#list-overlay').removeClass('hide');
     $('#list-dropdown').addClass('arrow-active');
     items[0].forEach(function(element) {
-      $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_' + element[3] + '_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
+      $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
     });
   });
 });
@@ -141,7 +141,7 @@ $('.add-item').on('click', (event) =>{
     url: address
   });
   request.done((element) => {
-  $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_' + element[0][3] + '_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
+  $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
    $('#item_name').val('');
    $('#item_quantity').val('');
  });
@@ -197,6 +197,48 @@ $('#new-list').on('click', (event) =>{
   });
   request.done(() =>{
   $('#line-items')[0].innerHTML = "";
+  });
+});
+
+$('#sort-list').on('click', (event) =>{
+  let isles = $('#line-items')[0].children;
+  // Array.from(isles).forEach(function(isle){
+  //   debugger
+ // if (isNaN(parseInt(isle.innerHTML))) {
+ //   unmarked_isle_array.push(isle);
+ // } else {
+ //   isle_array.push(isle);
+ // }
+ //  });
+ //  debugger
+ let isle_array = Array.from(isles).sort(function(a, b) {
+
+   let item1 = null;
+   let item2 = null;
+   if (a.children[1].innerHTML == "__") {
+     item1 = 100;
+   } else {
+     item1 = parseInt(a.children[1].innerHTML); // ignore upper and lowercase
+   }
+   if (b.children[1].innerHTML == "__") {
+     item2 = 100;
+   } else {
+     item2 = parseInt(b.children[1].innerHTML); // ignore upper and lowercase
+   }
+
+   if (item1 < item2) {
+     return -1;
+   }
+   if (item1 > item2) {
+     return 1;
+   }
+
+   // names must be equal
+   return 0;
+ });
+  $('#line-items')[0].innerHTML = '';
+  isle_array.forEach(function(line) {
+    $('#line-items').append(line);
   });
 });
 // *************************OTHER*********************************
@@ -263,6 +305,7 @@ $('#new-list').on('click', (event) =>{
 
 
 
+// (function(a, b){ if(a.getElementsByClassName('div')[0].innerHTML > b.getElementsByClassName('div')[0].innerHTML){ return a-b} else {return b-a}})
 // $('#searchInput').on('change', function(){
 //   console.log('testing...');
 // });
