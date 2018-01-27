@@ -27,7 +27,7 @@ class List < ApplicationRecord
     new_line = Lineitem.create(item_id: list_addition.id, list_id: self.id, amount: quantity)
     item_location = Location.find_by(store_id: store.id, item_id: list_addition.id)
     if item_location.nil?
-      isle = "__"
+      isle = '__'
     else
       isle = item_location.isle
     end
@@ -40,7 +40,7 @@ class List < ApplicationRecord
       recipe_listing = Ingredient.find_by(recipe_id: recipe.id, item_id: item.id)
       item_location = Location.find_by(store_id: store.id, item_id: item.id)
       if item_location.nil?
-        isle = "__"
+        isle = '__'
       else
         isle = item_location.isle
       end

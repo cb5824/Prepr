@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
  def set_list
    if user_signed_in?
-     @current_list = current_user.lists.order("created_at").last
+     @current_list = current_user.lists.order('created_at').last
    end
  end
 

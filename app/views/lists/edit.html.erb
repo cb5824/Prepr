@@ -1,20 +1,20 @@
 <h1 class='text_box'>Edit List</h1>
 
 <div class='text_box'>
-  <input type="text" name="item_name" id="item_name" placeholder="New Item Name">
-  <input type="text" name="item_quantity" id="item_quantity" placeholder="New Item Quantity">
+  <input type='text' name='item_name' id='item_name' placeholder='New Item Name'>
+  <input type='text' name='item_quantity' id='item_quantity' placeholder='New Item Quantity'>
 
 
-  <button type="button" class='add-item' data-list-id="<%= @list.id %>">Add Individual Item</button>
+  <button type='button' class='add_item' data-list-id='<%= @list.id %>'>Add Individual Item</button>
 </div>
 
 <div class='text_box'>
-<%= link_to "Printable List", list_path(@list) %>
+<%= link_to 'Printable List', list_path(@list) %>
 <h2>Current line items</h2>
-<ul id='line-items' class='unmarked_list'>
+<ul id='line_items' class='unmarked_list'>
   <% if @list.items[0] != nil %>
     <% @list.get_list_items.each do |item| %>
-      <li><div class='item_listing'><%= item[0].name %>, <%= item[1] %></div><%=image_tag("xsmall.jpg", class: 'delete_img', data: { item_id: item[0].id, list_id: @list.id })%></li>
+      <li><div class='item_listing'><%= item[0].name %>, <%= item[1] %></div><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: item[0].id, list_id: @list.id })%></li>
     <% end %>
   <% else %>
     <li>Nothing yet...</li>

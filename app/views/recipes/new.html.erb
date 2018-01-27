@@ -2,27 +2,27 @@
 <h1>Enter new recipe details below:</h1>
 <hr>
 <%= form_for(@recipe) do |f| %>
-  <div class="field">
+  <div class='field'>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class='field'>
   <%= f.label :servings %><br />
     <%= f.number_field :servings %>
   </div>
 
-  <div class="field">
-  <%= f.label :duration, "Duration (in minutes)" %><br />
+  <div class='field'>
+  <%= f.label :duration, 'Duration (in minutes)' %><br />
     <%= f.number_field :duration %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= f.label :directions %><br />
     <%= f.text_area :directions %>
   </div>
 
-  <div class="actions">
+  <div class='actions'>
     <%= f.submit %>
   </div>
 

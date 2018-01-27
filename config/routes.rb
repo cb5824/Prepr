@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :items
   resources :recipes
   resources :stores
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
       resources :users
     end
   end
-  root to: "homes#index"
+  root to: 'homes#index'
 end

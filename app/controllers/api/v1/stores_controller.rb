@@ -12,9 +12,9 @@ class Api::V1::StoresController < ApplicationController
     pairs.each do |pair|
       new_isle = pair[1]
 
-      if new_isle != ""
+      if new_isle != ''
         if new_isle.length == 1
-          new_isle = "0" + new_isle
+          new_isle = '0' + new_isle
         end
         location = Location.find_by(store_id: store.id, item_id: pair[0])
         if location

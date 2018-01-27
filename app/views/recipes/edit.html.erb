@@ -1,43 +1,43 @@
 <div class='text_box'>
 <h1>Edit page for <%= @recipe.name %></h1>
 <hr>
-  <div class="recipe_block">
+  <div class='recipe_block'>
 <%= form_for(@recipe) do |f| %>
-  <div class="field">
+  <div class='field'>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class='field'>
   <%= f.label :servings %><br />
     <%= f.number_field :servings %>
   </div>
 
-  <div class="field">
-  <%= f.label :duration, "Duration (in minutes)" %><br />
+  <div class='field'>
+  <%= f.label :duration, 'Duration (in minutes)' %><br />
     <%= f.number_field :duration %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= f.label :directions %><br />
     <%= f.text_area :directions %>
   </div>
 
 
 
-  <div class="field">
-    <p>Current Image: <img src="<%= @recipe.image %>" class="recipe_icon" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+  <div class='field'>
+    <p>Current Image: <img src='<%= @recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
 </p>
 
       <br>
-    <%= f.label :image, "Image URL" %><br />
+    <%= f.label :image, 'Image URL' %><br />
     <%= f.text_field :image %>
   </div>
 
   <%= f.hidden_field :ingredients, value: @ingredients %>
 
 
-  <div class="actions">
+  <div class='actions'>
     <%= f.submit %>
   </div>
 <% end %>
@@ -49,7 +49,7 @@
     <% end %>
   </ul>
 <% end %>
-<div class="ingredient_block">
+<div class='ingredient_block'>
 <h3>Ingredients:</h3>
 <ul id='ingredients-list'>
   <% @recipe.ingredients.each do |ingredient| %>
@@ -62,15 +62,9 @@
 <input type='hidden' value='<%= @recipe.id %>' id='recipe_id_field'>
 <input type='hidden' value='<%= api_v1_recipe_path (@recipe) %>' id='recipe_route'>
 <div class='text_box'>
-<input type="text" name="ingredient_name" id="ingredient_name" placeholder="New Ingredient Name">
-<input type="text" name="ingredient_quantity" id="ingredient_quantity" placeholder="New Ingredient Quantity">
+<input type='text' name='ingredient_name' id='ingredient_name' placeholder='New Ingredient Name'>
+<input type='text' name='ingredient_quantity' id='ingredient_quantity' placeholder='New Ingredient Quantity'>
 
 
-<button type="button" class='add-ingredient' data-recipe-id="<%= @recipe.id %>">Add ingredient</button >
-<!-- <%= link_to "add ingredient", api_v1_recipe_path, class: 'add-ingredient', method: :put, remote: true %> -->
-<!-- <%= form_for @recipe, remote: true, :html => { :id => "add-ingredient" } do |f|     %>
-  <%= f.text_field  :new_ingredient           %>
-  <%= f.text_field  :new_ingredient_quantity  %>
-  <%= f.submit                                %>
-<% end %> -->
+<button type='button' class='add-ingredient' data-recipe-id='<%= @recipe.id %>'>Add ingredient</button >
 </div>
