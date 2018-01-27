@@ -1388,14 +1388,14 @@ $('.recipe').on('click', (event) =>{
 
   request.done((items) =>{
     items.forEach(function(element) {
-      $('#line-items').append('<li><div class="item_listing">' + element[0] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
+      $('#line_items').append('<li><div class="item_listing">' + element[0] + '</div> <img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall"> </li>')
     });
   });
 });
 
 // *************************LISTS*********************************
 
-$('.add-item').on('click', (event) =>{
+$('.add_item').on('click', (event) =>{
   event.preventDefault()
   let item_name = $('#item_name').val()
   let item_quantity = $('#item_quantity').val()
@@ -1409,14 +1409,14 @@ $('.add-item').on('click', (event) =>{
 
   request.done(() => {
     debugger
-   $('#line-items').append('<li>' + item_name + '</li>')
+   $('#line_items').append('<li>' + item_name + '</li>')
    $('#item_name').val('')
    $('#item_quantity').val('')
  })
 
 })
 
-$('#line-items').on('click', '.delete_img', event =>{
+$('#line_items').on('click', '.delete_img', event =>{
   event.preventDefault();
   let itemId = event.target.dataset.itemId;
   let listId = $('#list_id_field').val()

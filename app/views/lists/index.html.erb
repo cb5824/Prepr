@@ -3,7 +3,7 @@
 <ul>
 <% if @lists != nil %>
   <% @lists.each do |list| %>
-    <li><a href="<%= edit_list_path(list) %>"><%= list.created_at %></a></li>
+    <li><a href='<%= edit_list_path(list) %>'><%= list.created_at %></a></li>
   <% end %>
 <% end %>
 </div>

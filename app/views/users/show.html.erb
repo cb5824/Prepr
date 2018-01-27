@@ -1,41 +1,41 @@
-<div class="text_box">
+<div class='text_box'>
   <p>Username: <%= @user.username %></p>
   <p>Email: <%= @user.email %></p>
-  <%= link_to "Change Password/Email", edit_user_registration_path(@user) %>
-  <p id="home_store_listing">
+  <%= link_to 'Change Password/Email', edit_user_registration_path(@user) %>
+  <p id='home_store_listing'>
     <% if @user.store %>
       Home Store: <%= @user.store.name %>, <%= @user.store.address %>
     <% else %>
       Home Store: None selected, set home store below
     <% end %>
   </p>
-  <div class="half-screen-block">
+  <div class='half_screen_block'>
   <h3>Recipes created:</h3>
   <ul>
     <% if @created_recipes != [] %>
       <% @created_recipes.each do |recipe| %>
-        <li><a href="<%= recipe_path(recipe) %>"><%= recipe.name %></a></li>
+        <li><a href='<%= recipe_path(recipe) %>'><%= recipe.name %></a></li>
       <% end %>
     <% else %>
       <li> None yet...
     <% end %>
   </ul>
   </div>
-  <div class="half-screen-block">
+  <div class='half_screen_block'>
   <h3>Favorite Recipes</h3>
   <ul>
     <% @favorite_recipes.each do |recipe| %>
-    <li><a href="<%= recipe_path(recipe) %>"><%= recipe.name %></a></li>
+    <li><a href='<%= recipe_path(recipe) %>'><%= recipe.name %></a></li>
     <% end %>
   </ul>
   </div>
   <hr>
   <h3>Search for store:</h3>
-  <input type="text" name="store_name" id="store_name" placeholder="Store Name">
-  <input type="text" name="store_address" id="store_address" placeholder="Search near address">
-  <button type="button" class='search_store'>Search for Store</button >
+  <input type='text' name='store_name' id='store_name' placeholder='Store Name'>
+  <input type='text' name='store_address' id='store_address' placeholder='Search near address'>
+  <button type='button' class='search_store'>Search for Store</button >
   <ul>
-    <div id="store_search_results" data-user-id="<%= current_user.id %>">
+    <div id='store_search_results' data-user-id='<%= current_user.id %>'>
     </div>
   </ul>
 </div>

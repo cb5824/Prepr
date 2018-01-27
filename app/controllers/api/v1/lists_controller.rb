@@ -18,16 +18,16 @@ class Api::V1::ListsController < ApplicationController
 
   def update
     @result = []
-    if params['list_action'] == "delete"
+    if params['list_action'] == 'delete'
       deleted_item = Item.find(params['item_id'])
       @current_list.delete_list_item(deleted_item)
     end
 
-    if params['list_action'] == "add-item"
+    if params['list_action'] == 'add_item'
       @result << @current_list.add_list_item(params['iname'], params['iquantity'], current_user.store)
     end
 
-    if params['list_action'] == "add-recipe"
+    if params['list_action'] == 'add-recipe'
       added_recipe = Recipe.find(params['recipe_id'])
       @result << @current_list.add_recipe_items(added_recipe, current_user.store)
     end

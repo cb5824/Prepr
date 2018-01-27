@@ -13,42 +13,10 @@
  *= require_tree .
  *= require_self
  */
- #myInput {
-     background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-     background-position: 10px 12px; /* Position the search icon */
-     background-repeat: no-repeat; /* Do not repeat the icon image */
-     width: 100%; /* Full-width */
-     font-size: 16px; /* Increase font-size */
-     padding: 12px 20px 12px 40px; /* Add some padding */
-     border: 1px solid #ddd; /* Add a grey border */
-     margin-bottom: 12px; /* Add some space below the input */
- }
-
- #myUL {
-     /* Remove default list styling */
-     list-style-type: none;
-     padding: 0;
-     margin: 0;
- }
-
- #myUL li a {
-     border: 1px solid #ddd; /* Add a border to all links */
-     margin-top: -1px; /* Prevent double borders */
-     background-color: #f6f6f6; /* Grey background color */
-     padding: 12px; /* Add some padding */
-     text-decoration: none; /* Remove default text underline */
-     font-size: 18px; /* Increase the font-size */
-     color: black; /* Add a black text color */
-     display: block; /* Make it into a block element to fill the whole list */
- }
-
- #myUL li a:hover:not(.header) {
-     background-color: #eee; /* Add a hover effect to all links, except for headers */
- }
 
  body {
    background-image: url('https://static.pexels.com/photos/326311/pexels-photo-326311.jpeg');
-   min-width: 1000px;
+   min-width: 1125px;
    text-align: center;
  }
 
@@ -58,7 +26,7 @@
    width: 960px;
  }
 
- .nav-link {
+ .nav_link {
   border: solid black 2px;
   padding: 10px;
   display: inline-block;
@@ -99,14 +67,14 @@
 }
 
 .top_bar{
-  min-height: 100px;
+  max-height: 100px;
 }
-.top-bar-left{
+.top_bar_left{
   padding-right: 25%;
   display: inline-block;
 }
 
-.top-bar-right{
+.top_bar_right{
   display: inline-block;
 }
 
@@ -135,11 +103,11 @@
 list-style-type: none;
 }
 
-.isle-entry, .list-line, .isle{
+.isle_entry, .list_line, .isle{
   display: inline;
 }
 
-.isle-entry{
+.isle_entry{
   width:  40px;
 }
 
@@ -213,25 +181,25 @@ list-style-type: none;
   display: inline-block;
 }
 
-.dropdown-arrow{
+.dropdown_arrow{
   width: 15px;
   height: 15px;
   float: right;
 }
 
-.current-list-button p{
+.current_list_button p{
   display: inline;
   padding-right: 15px;
 }
 
-.arrow-active{
+.arrow_active{
   transform: rotate(90deg);
 }
 .hide{
   display: none;
 }
 
-#list-overlay{
+#list_overlay{
   background-color: rgba(48,47,46,0.95);
   min-height: 500px;
   width: 500px;
@@ -243,7 +211,7 @@ list-style-type: none;
   color: #ffffff;
 }
 
-#list-overlay a, #list-overlay a:visited{
+#list_overlay a, #list_overlay a:visited{
   color: #6b7bd2;
   padding-left: 40px;
 }
@@ -261,7 +229,7 @@ list-style-type: none;
   text-align: center;
 }
 
-.half-screen-block{
+.half_screen_block{
   width: 40%;
   display: inline-block;
   vertical-align: top;

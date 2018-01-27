@@ -26,9 +26,6 @@ class Api::V1::RecipesController < ApplicationController
       else
         @new_ingredient = Item.find_by(name: params['iname'])
       end
-      # @recipe.items << @new_ingredient
-      # @ingredient_listing = @recipe.ingredients.where(item_id: @new_ingredient.id)
-      # @ingredient_listing.last.quantity = params['iquantity']
       @ingredient_listing = Ingredient.create(item_id: @new_ingredient.id, recipe_id: @recipe.id, quantity: params['iquantity'])
     end
   end

@@ -48,9 +48,9 @@
 $( document ).ready(function() {
 // *************************NAV BAR*********************************
 
-$('.current-list-button').on('click', (event) =>{
-  $('#list-dropdown').toggleClass('arrow-active');
-  $('#list-overlay').toggleClass('hide');
+$('.current_list_button').on('click', (event) =>{
+  $('#list_dropdown').toggleClass('arrow_active');
+  $('#list_overlay').toggleClass('hide');
 });
 
 // *************************RECIPES*********************************
@@ -86,10 +86,10 @@ $('.add-recipe-to-list').on('click', (event) =>{
   });
 
   request.done((items) =>{
-    $('#list-overlay').removeClass('hide');
-    $('#list-dropdown').addClass('arrow-active');
+    $('#list_overlay').removeClass('hide');
+    $('#list_dropdown').addClass('arrow_active');
     items[0].forEach(function(element) {
-      $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
+      $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
     });
   });
 });
@@ -128,7 +128,7 @@ $('#favorite-icon').on('click', '#unfavorite_button', (event) =>{
 });
 // *************************LISTS*********************************
 
-$('.add-item').on('click', (event) =>{
+$('.add_item').on('click', (event) =>{
   event.preventDefault();
   let item_name = $('#item_name').val();
   let item_quantity = $('#item_quantity').val();
@@ -141,14 +141,14 @@ $('.add-item').on('click', (event) =>{
     url: address
   });
   request.done((element) => {
-  $('#line-items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
+  $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
    $('#item_name').val('');
    $('#item_quantity').val('');
  });
 
 });
 
-$('#line-items').on('click', '.delete_img', event =>{
+$('#line_items').on('click', '.delete_img', event =>{
   event.preventDefault();
   let itemId = event.target.dataset.itemId;
   let listId = event.target.dataset.listId;
@@ -169,7 +169,7 @@ $('#update-isles').on('click', (event) =>{
   let storeId = $('#store_id_field').val();
   let listId = $('#list_id_field').val();
   let address = $('#store_route').val();
-  let entries = $('.isle-entry');
+  let entries = $('.isle_entry');
 
   let pairs = [];
   Array.from(entries).forEach(function(entry){
@@ -187,7 +187,7 @@ $('#update-isles').on('click', (event) =>{
   });
 });
 
-$('#new-list').on('click', (event) =>{
+$('#new_list').on('click', (event) =>{
   event.preventDefault();
   let address = event.target.dataset.address;
   let request = $.ajax({
@@ -196,21 +196,13 @@ $('#new-list').on('click', (event) =>{
     url: address
   });
   request.done(() =>{
-  $('#line-items')[0].innerHTML = "";
+  $('#line_items')[0].innerHTML = "";
   });
 });
 
-$('#sort-list').on('click', (event) =>{
-  let isles = $('#line-items')[0].children;
-  // Array.from(isles).forEach(function(isle){
-  //   debugger
- // if (isNaN(parseInt(isle.innerHTML))) {
- //   unmarked_isle_array.push(isle);
- // } else {
- //   isle_array.push(isle);
- // }
- //  });
- //  debugger
+$('#sort_list').on('click', (event) =>{
+  let isles = $('#line_items')[0].children;
+
  let isle_array = Array.from(isles).sort(function(a, b) {
 
    let item1 = null;
@@ -218,12 +210,12 @@ $('#sort-list').on('click', (event) =>{
    if (a.children[1].innerHTML == "__") {
      item1 = 100;
    } else {
-     item1 = parseInt(a.children[1].innerHTML); // ignore upper and lowercase
+     item1 = parseInt(a.children[1].innerHTML);
    }
    if (b.children[1].innerHTML == "__") {
      item2 = 100;
    } else {
-     item2 = parseInt(b.children[1].innerHTML); // ignore upper and lowercase
+     item2 = parseInt(b.children[1].innerHTML);
    }
 
    if (item1 < item2) {
@@ -233,12 +225,11 @@ $('#sort-list').on('click', (event) =>{
      return 1;
    }
 
-   // names must be equal
    return 0;
  });
-  $('#line-items')[0].innerHTML = '';
+  $('#line_items')[0].innerHTML = '';
   isle_array.forEach(function(line) {
-    $('#line-items').append(line);
+    $('#line_items').append(line);
   });
 });
 // *************************OTHER*********************************
@@ -302,10 +293,3 @@ $('#sort-list').on('click', (event) =>{
 
 
 });
-
-
-
-// (function(a, b){ if(a.getElementsByClassName('div')[0].innerHTML > b.getElementsByClassName('div')[0].innerHTML){ return a-b} else {return b-a}})
-// $('#searchInput').on('change', function(){
-//   console.log('testing...');
-// });
