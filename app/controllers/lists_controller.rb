@@ -3,7 +3,7 @@ class ListsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @lists = List.all
+    @lists = List.page(params[:page]).per_page(5)
   end
 
   def new

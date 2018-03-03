@@ -14,10 +14,10 @@
   <% @recent_recipes.each do |recipe| %>
   <div class='recipe_listing'>
     <a href='<%= recipe_path(recipe) %>'>
-      <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
-    </a>
-    <a href='<%= recipe_path(recipe)%>'><p class='top_recipe_listing'><%= recipe.name %></p></a>
+    <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+    <p class='top_recipe_listing'><%= recipe.name %></p>
     <p class='top_recipe_listing'>by: <%= recipe.user.username %></p>
+  </a>
     </div>
   <% end %>
 </div>
