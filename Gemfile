@@ -44,6 +44,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'teaspoon'
+  gem 'teaspoon-jasmine'
+  gem 'jasmine-jquery-rails'
+  gem 'phantomjs'
 end
 
 group :development do

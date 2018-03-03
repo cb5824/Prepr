@@ -1,14 +1,25 @@
 class List < ApplicationRecord
-  has_many :lineitem
+  has_many :lineitems
   has_many :recipes
-  has_many :items, :through => :lineitem
+  has_many :items, :through => :lineitems
   belongs_to :user
 
-  def get_list_items
+  def get_list_items(user)
+
+    # lines = Lineitem.includes(:items).where(list_id: current_user.lists.first.id)
     result = []
-    lines = Lineitem.where(list_id: self.id)
-    lines.each do |line|
-      result << [Item.find(line.item_id), line.amount]
+    # located_items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2}).where(locations: {store_id: [user.store.id, nil] })
+    items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2})
+    items.each do |item|
+      isle = nil
+      if item.locations != []
+        item.locations.each do |location|
+          if location.store_id == user.store.id
+            isle = location.isle
+          end
+        end
+      end
+      result << [item, isle, item.lineitems[0].amount]
     end
     result
   end

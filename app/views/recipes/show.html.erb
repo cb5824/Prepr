@@ -22,8 +22,7 @@
   <h2>Ingredients:</h2>
   <ul>
     <% @recipe.ingredients.each do |ingredient| %>
-    <% item = Item.find(ingredient.item.id) %>
-      <li><%= item.name %>, <%= ingredient.quantity %></li>
+      <li><%= ingredient.item.name %>, <%= ingredient.quantity %></li>
     <% end %>
   </ul>
   <% if user_signed_in? %>
@@ -36,6 +35,7 @@
     <% end %>
   <% end %>
 </div>
+
 <div class='half_screen_block recipe_directions_block'>
   <h2>Directions:</h2>
   <p><%= simple_format(@recipe.directions) %></p>

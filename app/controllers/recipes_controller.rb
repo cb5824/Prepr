@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = (Recipe.includes(:items, :ingredients).where(id: params[:id]))[0]
   end
 
   def new
@@ -26,7 +26,6 @@ class RecipesController < ApplicationController
       end
       redirect_to edit_list_path(list)
     end
-    # binding.pry
   end
 
 

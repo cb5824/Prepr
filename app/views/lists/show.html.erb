@@ -2,14 +2,14 @@
 <li class='text_box'>Current Store: <%= current_user.store.name %>, <%= current_user.store.address %></li>
 <% end %>
 <div class='text_box list_display'>
-<% @listings.each do |listing| %>
-  <% if Location.find_by(store_id: @store.id, item_id: listing[0].id) %>
-    <% item_location = (Location.find_by(store_id: @store.id, item_id: listing[0].id)).isle %>
-  <% else %>
+<% @items.each_with_index do |item, index| %>
+  <% if @isles[index] == nil %>
     <% item_location = '__' %>
+  <% else %>
+  <% item_location = @isles[index] %>
   <% end %>
-  <input type='number' class='isle_entry' placeholder='isle' data-item-id='<%= listing[0].id %>' max='99', min='1'>
-  <p class='list_line'>_<%= item_location %>_ <%= listing[0].name %></p>
+  <input type='number' class='isle_entry' placeholder='isle' data-item-id='<%= item.id %>' max='99', min='1'>
+  <p class='list_line'>_<%= item_location %>_ <%= item.name %></p>
 <br>
 <% end %>
 <button type='button' id='update-isles' data-store-id='<%= @store.id %>'>Update Isles</button >
