@@ -15,9 +15,10 @@
  */
 
  body {
-   background-image: url('https://static.pexels.com/photos/326311/pexels-photo-326311.jpeg');
+   background-image: url(Wood.jpg);
    min-width: 1125px;
    text-align: center;
+   font-family: 'Proxima Nova Soft','Helvetica Neue',sans-serif;
  }
 
  #wrapper {
@@ -27,11 +28,16 @@
  }
 
  .nav_link {
-  border: solid black 2px;
-  padding: 10px;
-  display: inline-block;
-  cursor: pointer;
-  color: #6b7bd2;
+   background-color: #302f2e;
+   color: white;
+   padding: 14px 25px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-weight: bold;
+}
+.nav_link:hover {
+  color: #603d86;
 }
 
 #logo img {
@@ -63,14 +69,19 @@
 }
 
 .text_box a{
-  color: #6b7bd2;
+  color: #ffffff;
+}
+
+a:hover{
+  color: #603d86;
 }
 
 .top_bar{
   max-height: 100px;
+  background-color: #302f2e;
 }
 .top_bar_left{
-  padding-right: 25%;
+  padding-right: 10%;
   display: inline-block;
 }
 
@@ -157,6 +168,7 @@ list-style-type: none;
   font-size: 24px;
   position: relative;
   margin: 0px;
+  color: #000000;
 }
 
 .top_recipe_block .recipe_icon{
@@ -165,7 +177,9 @@ list-style-type: none;
 
 .top_recipe_listing{
     display: block;
+    width: 400px;
 }
+
 
 .heart{
   width: 30px;
@@ -175,6 +189,10 @@ list-style-type: none;
 
 .recipe_listing{
   display: inline-block;
+}
+
+.recipe_listing a{
+  text-decoration: none;
 }
 
 #recent_recipe_block, #favorite_recipe_block{

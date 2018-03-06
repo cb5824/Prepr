@@ -2,6 +2,7 @@
 <h1>All Recipes:</h1>
 <hr>
 <ul>
+  <%= will_paginate @recipes %>
   <% if @recipes != nil %>
     <% @recipes.each do |recipe| %>
       <a href=<%= recipe_path(recipe) %>><li><%= recipe.name %></li></a>

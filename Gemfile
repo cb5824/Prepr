@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'devise'
 gem 'figaro'
+gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +45,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'teaspoon'
+  gem 'teaspoon-jasmine'
+  gem 'jasmine-jquery-rails'
+  gem 'phantomjs'
 end
 
 group :development do

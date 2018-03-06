@@ -2,6 +2,7 @@
 <h1>All items:</h1>
 <hr>
 <ul>
+  <%= will_paginate @items %>
 <% if @items != nil %>
   <% @items.each do |item| %>
     <li><%= item.name %></li>

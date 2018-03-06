@@ -3,7 +3,7 @@ class ListsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @lists = List.all
+    @lists = List.page(params[:page]).per_page(5)
   end
 
   def new
@@ -20,9 +20,16 @@ before_action :authenticate_user!
 
   def show
     @list = List.find(params[:id])
-    @listings = @list.get_list_items
+    @isles = []
     @store = current_user.store
-    @locations = Location.where(store_id: @store.id)
+    @items = Item.includes(:lists, :locations, :lineitems).where(lists: {id: params[:id]} ).to_a
+    @items.each do |item|
+      if item.locations.select{|location| location.store_id == @store.id} == []
+        @isles << nil
+      else
+        @isles << item.locations.select{|location| location.store_id == @store.id}[0].isle
+      end
+    end
   end
 
   def update

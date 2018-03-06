@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :items, :through => :ingredients
+  has_many :favorites
   belongs_to :user
   validates :name, uniqueness: true
 
@@ -25,16 +26,6 @@ class Recipe < ApplicationRecord
   def unfavorite_of(user)
     hearts = Favorite.find_by(user_id: user.id, recipe_id: self.id)
     hearts.destroy
-  end
-
-  def self.top_five
-    all_recipes = []
-    Recipe.all.each do |recipe|
-      favs = Favorite.where(recipe_id: recipe.id)
-      all_recipes << [recipe, favs.length]
-    end
-    top_five = (all_recipes.sort_by{|x,y|y}).pop(5).reverse
-    top_five
   end
 
   def add_ingredients(ingredient_array)
