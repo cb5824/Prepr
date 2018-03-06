@@ -8,15 +8,18 @@
   </head>
 
   <body>
-    <div class='text_box top_bar'>
+    <div class='top_bar'>
       <div class='top_bar_left'>
-        <li class='nav_link'><%= link_to 'HOME', root_path %></li>
+        <a class='nav_link' href='<%= root_path %>'>HOME</a>
         <% if user_signed_in? %>
-          <li class='nav_link'><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-          <li class='nav_link'><%= link_to 'My Account', user_path(current_user.id) %></li>
+          <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete,  :class => "nav_link" %>
+          <!-- <a class='nav_link' href='<%= destroy_user_session_path(current_user) %>'>Sign Out</a> -->
+
+          <a class='nav_link' href='<%= user_path(current_user.id) %>'>My Account</a>
+
         <% else %>
-          <li class='nav_link'><%= link_to 'Sign In', new_user_session_path %></li>
-          <li class='nav_link'><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <%= link_to 'Sign In', new_user_session_path, :class => "nav_link"  %>
+          <%= link_to 'Sign Up', new_user_registration_path, :class => "nav_link"  %>
         <% end %>
       </div>
       <div class='top_bar_right'>
@@ -41,13 +44,13 @@
             <% if @current_list.items[0] != nil %>
               <ul id='line_items' class='unmarked_list'>
 
-                <% @current_list.get_list_items.each do |listing| %>
-                  <% if Location.find_by(store_id: current_user.store.id, item_id: listing[0].id) %>
-                    <% item_location = (Location.find_by(store_id: current_user.store.id, item_id: listing[0].id)).isle %>
+                <% @current_list.get_list_items(current_user).each do |listing| %>
+                  <% if listing[1] %>
+                    <% item_location = listing[1] %>
                   <% else %>
                     <% item_location = '__' %>
                   <% end %>
-                  <li><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<div class='item_isle'><%= item_location %></div>_ <div class='item_listing'><%= listing[1] %> <%= listing[0].name %></div></li>
+                  <li><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<div class='item_isle'><%= item_location %></div>_ <div class='item_listing'><%= listing[2] %> <%= listing[0].name %></div></li>
                 <% end %>
               </ul>
             <% else %>

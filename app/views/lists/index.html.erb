@@ -1,6 +1,7 @@
 <div class='text_box'>
 <h1>Previous Lists:</h1>
 <ul>
+  <%= will_paginate @lists %>
 <% if @lists != nil %>
   <% @lists.each do |list| %>
     <li><a href='<%= edit_list_path(list) %>'><%= list.created_at %></a></li>

@@ -50,9 +50,11 @@ feature 'Favoriting recipes' do
 
     recipe2.make_favorite_of(user)
 
-    most_favorite = Recipe.top_five
-    expect(most_favorite[0][0]).to eq(recipe3)
-    expect(most_favorite[1][0]).to eq(recipe2)
+    ordered_recipes = Recipe.includes(:favorites).sort_by {|recipe| recipe.created_at}
+    top_recipes = (ordered_recipes.sort_by {|recipe| recipe.favorites.length}).reverse.shift(5)
+
+    expect(top_recipes[0]).to eq(recipe3)
+    expect(top_recipes[1]).to eq(recipe2)
   end
 
 end
