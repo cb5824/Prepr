@@ -13,7 +13,6 @@ class Api::V1::ListsController < ApplicationController
   end
 
   def edit
-    binding.pry
   end
 
   def update
