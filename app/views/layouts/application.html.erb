@@ -26,7 +26,8 @@
         <a class='nav_link' href=<%= recipes_path %>>List of all recipes</a>
         <a class='nav_link' href=<%= new_recipe_path %>>Add new recipe</a>
         <a class='nav_link' href=<%= lists_path %>>Previous Lists</a>
-        <div class='nav_link current_list_button'><p>Current List</p><%=image_tag('right-arrow.png', id: 'list_dropdown', class: 'dropdown_arrow')%></div>
+        <div class='nav_link current_list_button'><p>Current List</p></div>
+        <!-- <%=#image_tag('right-arrow.png', id: 'list_dropdown', class: 'dropdown_arrow')%> -->
       </div>
     </div>
     <div id='list_overlay' class='hide'>
