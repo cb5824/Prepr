@@ -13,8 +13,6 @@
         <a class='nav_link' href='<%= root_path %>'>HOME</a>
         <% if user_signed_in? %>
           <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete,  :class => "nav_link" %>
-          <!-- <a class='nav_link' href='<%= destroy_user_session_path(current_user) %>'>Sign Out</a> -->
-
           <a class='nav_link' href='<%= user_path(current_user.id) %>'>My Account</a>
 
         <% else %>
@@ -27,7 +25,6 @@
         <a class='nav_link' href=<%= new_recipe_path %>>Add new recipe</a>
         <a class='nav_link' href=<%= lists_path %>>Previous Lists</a>
         <div class='nav_link current_list_button'><p>Current List</p><%=image_tag('right-arrow.png', id: 'list_dropdown', class: 'dropdown_arrow')%></div>
-        <!-- this right arrow.png is causing the issues. use heroku logs -n 500, git push heroku master -->
       </div>
     </div>
     <div id='list_overlay' class='hide'>
