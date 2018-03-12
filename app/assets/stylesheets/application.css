@@ -15,7 +15,7 @@
  */
 
  body {
-   background-image:url('<%= asset_path("Wood.jpg") %> ');
+   background-image: url('<%= asset_path("Wood.jpg") %> ');
    background-size: cover;
    background-color: #41728a;
    min-width: 1145px;
