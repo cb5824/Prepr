@@ -60,14 +60,4 @@ feature 'My Account' do
 
   end
 
-  scenario 'my account page displays home store address' do
-    user.store = store
-    sign_in_specific_user(user)
-    visit root_path
-    click_link('My Account')
-    binding.pry
-    expect(page).to have_content(user.store.name)
-    expect(page).to have_content(user.store.address)
-  end
-
 end
