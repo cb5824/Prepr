@@ -1,24 +1,34 @@
-# README
+#Prepr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prepr is a web application for those who spend a lot of time making meal plans on a weekly basis. Search and save recipes submitted by others or submit your own. Add ingredients for a recipe to a shopping list with a single click. With repeat use, lists will become organized by the isle in which an item is located in your local grocery store.
 
-Things you may want to cover:
+##Getting Started
 
-* Ruby version
+Clone the repository and install gems with:
 
-* System dependencies
+```
+bundle install
+```
 
-* Configuration
+Create the database:
+```
+rake db:create
+```
 
-* Database creation
+Migrate changes:
+```
+rake db:migrate
+```
 
-* Database initialization
+If examples are desired, seed the database:
+```
+rake db:seed
+```
 
-* How to run the test suite
+Make sure tests pass:
+```
+rake
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Acknowledgments
+Thank you to the faculty at Launch Academy for guiding me on my coding journey
