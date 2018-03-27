@@ -20,14 +20,14 @@ before_action :authenticate_user!
 
   def show
     @list = List.find(params[:id])
-    @isles = []
+    @aisles = []
     @store = current_user.store
     @items = Item.includes(:lists, :locations, :lineitems).where(lists: {id: params[:id]} ).to_a
     @items.each do |item|
       if item.locations.select{|location| location.store_id == @store.id} == []
-        @isles << nil
+        @aisles << nil
       else
-        @isles << item.locations.select{|location| location.store_id == @store.id}[0].isle
+        @aisles << item.locations.select{|location| location.store_id == @store.id}[0].aisle
       end
     end
   end

@@ -7,7 +7,7 @@ class Api::V1::ListsController < ApplicationController
 
   def new
     List.create(user_id: current_user.id)
-    if current_user.lists.length > 2
+    if current_user.lists.length > 3
       current_user.lists.first.destroy
     end
   end
@@ -30,7 +30,6 @@ class Api::V1::ListsController < ApplicationController
       added_recipe = Recipe.find(params['recipe_id'])
       @result << @current_list.add_recipe_items(added_recipe, current_user.store)
     end
-
     render json: @result, status: :ok
   end
 
