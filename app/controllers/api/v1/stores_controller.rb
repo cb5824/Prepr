@@ -10,17 +10,17 @@ class Api::V1::StoresController < ApplicationController
     pairs = params['pairs'].values
     store = Store.find(params['id'])
     pairs.each do |pair|
-      new_isle = pair[1]
+      new_aisle = pair[1]
 
-      if new_isle != ''
-        if new_isle.length == 1
-          new_isle = '0' + new_isle
+      if new_aisle != ''
+        if new_aisle.length == 1
+          new_aisle = '0' + new_aisle
         end
         location = Location.find_by(store_id: store.id, item_id: pair[0])
         if location
-          location.isle = new_isle
+          location.aisle = new_aisle
         else
-          location = Location.new(store_id: store.id, item_id: pair[0], isle: new_isle)
+          location = Location.new(store_id: store.id, item_id: pair[0], aisle: new_aisle)
         end
         location.save
       end

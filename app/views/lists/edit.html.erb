@@ -13,7 +13,7 @@
 <h2>Current line items</h2>
 <ul id='line_items' class='unmarked_list'>
   <% if @list.items[0] != nil %>
-    <% @list.get_list_items.each do |item| %>
+    <% @list.get_list_items(current_user).each do |item| %>
       <li><div class='item_listing'><%= item[0].name %>, <%= item[1] %></div><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: item[0].id, list_id: @list.id })%></li>
     <% end %>
   <% else %>

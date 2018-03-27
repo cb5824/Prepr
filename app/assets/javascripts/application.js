@@ -89,7 +89,7 @@ $('.add-recipe-to-list').on('click', (event) =>{
     $('#list_overlay').removeClass('hide');
     $('#list_dropdown').addClass('arrow_active');
     items[0].forEach(function(element) {
-      $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
+      $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_aisle">' + element[3] + '</div>_ <div class="item_listing">' + element[2] + ' ' + element[0] + '</div></li>');
     });
   });
 });
@@ -141,7 +141,7 @@ $('.add_item').on('click', (event) =>{
     url: address
   });
   request.done((element) => {
-  $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_isle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
+  $('#line_items').append('<li><img class="delete_img" data-item-id="' + element[0][1] + '" data-list-id="' + listId + '" src="/assets/xsmall-222eb3bfd95571286a3da1f06aff3b5d3507c58ec056c84089fe70c455bde292.jpg" alt="Xsmall">_<div class="item_aisle">' + element[0][3] + '</div>_<div class="item_listing">' + element[0][2] + ' ' + element[0][0] + '</div></li>');
    $('#item_name').val('');
    $('#item_quantity').val('');
  });
@@ -164,12 +164,12 @@ $('#line_items').on('click', '.delete_img', event =>{
   });
 });
 
-$('#update-isles').on('click', (event) =>{
+$('#update-aisles').on('click', (event) =>{
   event.preventDefault();
   let storeId = $('#store_id_field').val();
   let listId = $('#list_id_field').val();
   let address = $('#store_route').val();
-  let entries = $('.isle_entry');
+  let entries = $('.aisle_entry');
 
   let pairs = [];
   Array.from(entries).forEach(function(entry){
@@ -201,9 +201,9 @@ $('#new_list').on('click', (event) =>{
 });
 
 $('#sort_list').on('click', (event) =>{
-  let isles = $('#line_items')[0].children;
+  let aisles = $('#line_items')[0].children;
 
- let isle_array = Array.from(isles).sort(function(a, b) {
+ let aisle_array = Array.from(aisles).sort(function(a, b) {
 
    let item1 = null;
    let item2 = null;
@@ -228,7 +228,7 @@ $('#sort_list').on('click', (event) =>{
    return 0;
  });
   $('#line_items')[0].innerHTML = '';
-  isle_array.forEach(function(line) {
+  aisle_array.forEach(function(line) {
     $('#line_items').append(line);
   });
 });

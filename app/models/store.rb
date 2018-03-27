@@ -8,8 +8,8 @@ class Store < ApplicationRecord
 
   def locate_item(item)
     location = Location.find_by(store_id: self.id, item_id: item.id)
-    if location.isle
-      return location.isle
+    if location.aisle
+      return location.aisle
     else
       return ' ' 
     end

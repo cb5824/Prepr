@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20180101202736) do
   create_table "locations", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "store_id"
-    t.string "isle"
+    t.string "aisle"
     t.index ["item_id"], name: "index_locations_on_item_id"
     t.index ["store_id"], name: "index_locations_on_store_id"
   end

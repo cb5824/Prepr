@@ -3,16 +3,16 @@
 <% end %>
 <div class='text_box list_display'>
 <% @items.each_with_index do |item, index| %>
-  <% if @isles[index] == nil %>
+  <% if @aisles[index] == nil %>
     <% item_location = '__' %>
   <% else %>
-  <% item_location = @isles[index] %>
+  <% item_location = @aisles[index] %>
   <% end %>
-  <input type='number' class='isle_entry' placeholder='isle' data-item-id='<%= item.id %>' max='99', min='1'>
+  <input type='number' class='aisle_entry' placeholder='aisle' data-item-id='<%= item.id %>' max='99', min='1'>
   <p class='list_line'>_<%= item_location %>_ <%= item.name %></p>
 <br>
 <% end %>
-<button type='button' id='update-isles' data-store-id='<%= @store.id %>'>Update Isles</button >
+<button type='button' id='update-aisles' data-store-id='<%= @store.id %>'>Update aisles</button >
 
 </div>
 <input type='hidden' value='<%= @store.id %>' id='store_id_field'>

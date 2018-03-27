@@ -11,15 +11,15 @@ class List < ApplicationRecord
     # located_items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2}).where(locations: {store_id: [user.store.id, nil] })
     items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2})
     items.each do |item|
-      isle = nil
+      aisle = nil
       if item.locations != []
         item.locations.each do |location|
           if location.store_id == user.store.id
-            isle = location.isle
+            aisle = location.aisle
           end
         end
       end
-      result << [item, isle, item.lineitems[0].amount]
+      result << [item, aisle, item.lineitems[0].amount]
     end
     result
   end
@@ -38,11 +38,11 @@ class List < ApplicationRecord
     new_line = Lineitem.create(item_id: list_addition.id, list_id: self.id, amount: quantity)
     item_location = Location.find_by(store_id: store.id, item_id: list_addition.id)
     if item_location.nil?
-      isle = '__'
+      aisle = '__'
     else
-      isle = item_location.isle
+      aisle = item_location.aisle
     end
-    return [list_addition.name, list_addition.id, new_line.amount, isle]
+    return [list_addition.name, list_addition.id, new_line.amount, aisle]
   end
 
   def add_recipe_items(recipe, store)
@@ -51,12 +51,12 @@ class List < ApplicationRecord
       recipe_listing = Ingredient.find_by(recipe_id: recipe.id, item_id: item.id)
       item_location = Location.find_by(store_id: store.id, item_id: item.id)
       if item_location.nil?
-        isle = '__'
+        aisle = '__'
       else
-        isle = item_location.isle
+        aisle = item_location.aisle
       end
       listing = Lineitem.create(item_id: item.id, list_id: self.id, amount: recipe_listing.quantity)
-      result << [item.name, item.id, listing.amount, isle]
+      result << [item.name, item.id, listing.amount, aisle]
     end
     return result
   end

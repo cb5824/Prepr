@@ -48,7 +48,7 @@
                   <% else %>
                     <% item_location = '__' %>
                   <% end %>
-                  <li><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<div class='item_isle'><%= item_location %></div>_ <div class='item_listing'><%= listing[2] %> <%= listing[0].name %></div></li>
+                  <li><%=image_tag('xsmall.jpg', class: 'delete_img', data: { item_id: listing[0].id, list_id: @current_list.id })%>_<div class='item_aisle'><%= item_location %></div>_ <div class='item_listing'><%= listing[2] %> <%= listing[0].name %></div></li>
                 <% end %>
               </ul>
             <% else %>
@@ -56,11 +56,11 @@
                 <li>Nothing yet...</li>
               </ul>
           <% end %>
-          <%= link_to 'Update Isles', list_path(@current_list) %>
+          <%= link_to 'Update aisles', list_path(@current_list) %>
           <br>
           <br>
         </div>
-        <button type='button' id='sort_list'>Sort List By Isle</button>
+        <button type='button' id='sort_list'>Sort List By aisle</button>
         <button type='button' id='new_list' data-address='<%= new_api_v1_list_path %>'>New List</button>
 
         <% end %>
