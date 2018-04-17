@@ -48,9 +48,25 @@
 $( document ).ready(function() {
 // *************************NAV BAR*********************************
 
-$('.current_list_button').on('click', (event) =>{
-  $('#list_dropdown').toggleClass('arrow_active');
-  $('#list_overlay').toggleClass('hide');
+
+$('.account_button').mouseenter(function(){
+  $('#account_overlay').show();
+  $('#list_overlay').hide();
+});
+
+$('#account_overlay').mouseleave(function(){
+  $('#account_overlay').hide();
+  $('#list_overlay').hide();
+});
+
+$('.current_list_button').mouseenter(function(){
+  $('#list_overlay').show();
+  $('#account_overlay').hide();
+});
+
+$('#list_overlay').mouseleave(function(){
+  $('#list_overlay').hide();
+  $('#account_overlay').hide();
 });
 
 // *************************RECIPES*********************************

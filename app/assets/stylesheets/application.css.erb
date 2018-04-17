@@ -37,6 +37,8 @@
    text-decoration: none;
    display: inline-block;
    font-weight: bold;
+   cursor: pointer;
+   margin: 0px;
 }
 .nav_link:hover {
   color: #603d86;
@@ -79,16 +81,20 @@ a:hover{
 }
 
 .top_bar{
-  max-height: 100px;
+  max-height: 46px;
+  min-width: 960px;
   background-color: #302f2e;
+  display: inline-block;
 }
 .top_bar_left{
   padding-right: 10%;
   display: inline-block;
+  float: left;
 }
 
 .top_bar_right{
-  display: inline-block;
+  display: inline-flex;
+  float: right;
 }
 
 .delete_img {
@@ -202,33 +208,48 @@ list-style-type: none;
 }
 
 .dropdown_arrow{
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   float: right;
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
 }
 
-.current_list_button p{
-  display: inline;
-  padding-right: 15px;
+.current_list_button, .account_button{
+  display: inline-block;
+  padding-left: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.arrow_active{
-  transform: rotate(90deg);
-}
 .hide{
   display: none;
 }
 
-#list_overlay{
-  background-color: rgba(48,47,46,0.95);
-  min-height: 500px;
+#list_overlay {
+  background-color: rgba(48,47,46);
+  min-height: 80px;
   width: 500px;
-  position: absolute;
-  right: 0;
   z-index: 1;
-  border: 4px solid black;
-  margin-right: 4px;
   color: #ffffff;
+  position: absolute;
+}
+
+#account_overlay{
+  background-color: rgba(48,47,46);
+  min-height: 80px;
+  width: 200px;
+  z-index: 1;
+  color: #ffffff;
+  position: absolute;
+}
+
+#dropdown_space{
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  z-index: 1;
 }
 
 #list_overlay a, #list_overlay a:visited{
