@@ -48,27 +48,38 @@
 $( document ).ready(function() {
 // *************************NAV BAR*********************************
 
+function hideAll(){
+  $('#account_overlay').hide();
+  $('#list_overlay').hide();
+  $('#recipe_overlay').hide();
+}
 
 $('.account_button').mouseenter(function(){
+  hideAll();
   $('#account_overlay').show();
-  $('#list_overlay').hide();
 });
 
 $('#account_overlay').mouseleave(function(){
-  $('#account_overlay').hide();
-  $('#list_overlay').hide();
+  hideAll();
 });
 
 $('.current_list_button').mouseenter(function(){
+  hideAll();
   $('#list_overlay').show();
-  $('#account_overlay').hide();
 });
 
 $('#list_overlay').mouseleave(function(){
-  $('#list_overlay').hide();
-  $('#account_overlay').hide();
+  hideAll();
 });
 
+$('.recipe_button').mouseenter(function(){
+  hideAll();
+  $('#recipe_overlay').show();
+});
+
+$('#recipe_overlay').mouseleave(function(){
+  hideAll();
+});
 // *************************RECIPES*********************************
 
 $('.add-ingredient').on('click', (event) =>{
