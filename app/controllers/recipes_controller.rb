@@ -44,6 +44,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
+      binding.pry
+      @recipe.parse_ingredients(params['quantities'], params['ingredients'])
       redirect_to edit_recipe_path(@recipe), notice: 'Recipe was saved successfully, add ingredient amounts here!'
     else
       @errors = @recipe.errors.full_messages

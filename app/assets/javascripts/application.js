@@ -82,6 +82,10 @@ $('#recipe_overlay').mouseleave(function(){
 });
 // *************************RECIPES*********************************
 
+$('#new_ingredient_row').on('click', (event) =>{
+  $('#add_ingredients_block').append('  <input type="text" name="ingredients[]" placeholder="ingredient"> <input type="number" name="quantities[]" placeholder="quantity"> <br>');
+});
+
 $('.add-ingredient').on('click', (event) =>{
   event.preventDefault();
   let ingredient_name = $('#ingredient_name').val();
