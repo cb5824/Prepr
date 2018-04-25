@@ -1,32 +1,32 @@
+<div>
+  <div class="top_recipe_block">
+    <p>Most Recent Recipes</p>
+    <div class="scrolling_block">
+      <% @recent_recipes.each do |recipe| %>
+        <div class="recipe_listing">
+          <a href='<%= recipe_path(recipe) %>'>
+          <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+          <p class='top_recipe_listing'><%= recipe.name %></p>
+          <p class='top_recipe_listing'>by: <%= recipe.user.username %></p>
+          </a>
+        </div>
+        <% end %>
+    </div>
 
-<div class="top_recipe_block">
-  <p>Most Recent Recipes</p>
-  <div class="scrolling_block">
-    <% @recent_recipes.each do |recipe| %>
-      <div class="recipe_listing">
-        <a href='<%= recipe_path(recipe) %>'>
-        <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
-        <p class='top_recipe_listing'><%= recipe.name %></p>
-        <p class='top_recipe_listing'>by: <%= recipe.user.username %></p>
-        </a>
-      </div>
-      <% end %>
-  </div>
-
-  <p>Most Liked Recipes</p>
-  <div class="scrolling_block">
-    <% @top_recipes.each do |recipe| %>
-      <div class="recipe_listing">
-        <a href='<%= recipe_path(recipe) %>'>
-        <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
-        <p class='top_recipe_listing'><%= recipe.name %></p>
-        <p class='top_recipe_listing'>by: <%= recipe.user.username %></p>
-        </a>
-      </div>
-      <% end %>
+    <p>Most Liked Recipes</p>
+    <div class="scrolling_block">
+      <% @top_recipes.each do |recipe| %>
+        <div class="recipe_listing">
+          <a href='<%= recipe_path(recipe) %>'>
+          <img src='<%= recipe.image %>' class='recipe_icon' onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';">
+          <p class='top_recipe_listing'><%= recipe.name %></p>
+          <p class='top_recipe_listing'>by: <%= recipe.user.username %></p>
+          </a>
+        </div>
+        <% end %>
+    </div>
   </div>
 </div>
-
 <div id="recipes">
   <h1>Recipes</h1>
   <%= render @recipes %>

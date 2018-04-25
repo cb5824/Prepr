@@ -1,5 +1,7 @@
 <div class="recipe">
-  <p><%= recipe.name %></p>
-  <img src="<%= recipe.image%>" alt="<%= recipe.name %>" class="thumbnail">
+  <a href="<%= recipe_path(recipe) %>">
+    <p><%= recipe.name %></p>
+    <img src="<%= recipe.image%>" onerror="this.onerror=null;this.src='http://localhost:3000/assets/default.png';" alt="<%= recipe.name %>" class="thumbnail">
+  </a>
   <br>
 </div>

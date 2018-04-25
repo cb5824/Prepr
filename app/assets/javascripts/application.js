@@ -55,9 +55,9 @@ $( document ).ready(function() {
     }
   });
   return $(window).scroll();
-}
+}});
 // *************************NAV BAR*********************************
-
+$( document ).ready(function() {
 function hideAll(){
   $('#account_overlay').hide();
   $('#list_overlay').hide();
