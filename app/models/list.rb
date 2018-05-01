@@ -9,7 +9,7 @@ class List < ApplicationRecord
     # lines = Lineitem.includes(:items).where(list_id: current_user.lists.first.id)
     result = []
     # located_items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2}).where(locations: {store_id: [user.store.id, nil] })
-    items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: 2})
+    items = Item.includes(:locations, :lineitems).where(lineitems: {list_id: self.id})
     items.each do |item|
       aisle = nil
       if item.locations != []

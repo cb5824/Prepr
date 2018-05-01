@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20180101202736) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image", default: "default.png"
+    t.string "image", default: "http://localhost:3000/assets/default.png"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

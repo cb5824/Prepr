@@ -45,6 +45,10 @@
 //     console.log(this.dataset.id)
 //     })
 // }
+$.ajaxSetup({
+  cache: true
+});
+
 $( document ).ready(function() {
   if ($('.pagination').length) {
   $(window).scroll(function() {
@@ -56,6 +60,7 @@ $( document ).ready(function() {
   });
   return $(window).scroll();
 }});
+
 // *************************NAV BAR*********************************
 $( document ).ready(function() {
 function hideAll(){

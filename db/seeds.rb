@@ -29,3 +29,7 @@ Open up fava bean pods and remove individual beans. Discard pods. Bring a medium
 
 4. Spread ricotta over the bottom of a serving plate and top with dressed vegetables. Serve with toast. Drizzle with more olive oil just before serving, if desired.")
 fava_bean_salad.add_ingredients([['1 1/2 pounds (700g)', 'fresh fava bean pods'], ['2 small', 'carrots' ], ['2 tablespoons (30ml)', 'extra-virgin olive oil'], ['1 tablespoon (15ml)', 'juice from 1 lemon'], ['1 small', 'shallot'], ['6 ounces (170g)', 'ricotta cheese'], ['4 slices', 'toast']])
+
+20.times do
+  FactoryBot.create(:recipe)
+end
