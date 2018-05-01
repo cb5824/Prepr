@@ -37,6 +37,8 @@
    text-decoration: none;
    display: inline-block;
    font-weight: bold;
+   cursor: pointer;
+   margin: 0px;
 }
 .nav_link:hover {
   color: #603d86;
@@ -62,12 +64,47 @@
   margin-bottom: 40px;
 }
 
+.thumbnail{
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  position: relative;
+}
+
+#recipes{
+  display: inline-block;
+  font-weight: bold;
+}
+
+.recipe{
+  position:relative;
+  text-align:center;
+}
+
+.recipe p{
+  position:absolute;
+  margin-left: 30px;
+  bottom: 50px;
+  width: 330px;
+  z-index: 1;
+  font-weight: bold;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
 .text_box{
   background-color: #302f2e;
   color: #ffffff;
   padding: 20px;
   border: 8px solid black;
   border-radius: 20px;
+}
+
+textarea {
+    overflow-y: scroll;
+    height: 100px;
+    width: 250px;
+    resize: none;
 }
 
 .text_box a{
@@ -79,23 +116,26 @@ a:hover{
 }
 
 .top_bar{
-  max-height: 100px;
+  max-height: 46px;
+  min-width: 960px;
   background-color: #302f2e;
+  display: inline-block;
 }
 .top_bar_left{
-  padding-right: 10%;
   display: inline-block;
+  float: left;
 }
 
 .top_bar_right{
-  display: inline-block;
+  display: inline-flex;
+  float: right;
 }
 
 .delete_img {
   border-radius: 50%;
 }
 
-.item_listing, .recipe{
+.item_listing{
   background-color: #A0302C;
   border: 1px solid black;
   top: 50%;
@@ -128,6 +168,11 @@ list-style-type: none;
   text-align: left;
 }
 
+#new_recipe_info_block, #add_ingredients_block{
+  display: inline-block;
+  vertical-align: top;
+}
+
 #recipe_directions{
   width: 400px;
   height: 200px;
@@ -149,28 +194,18 @@ list-style-type: none;
 }
 
 .recipe_icon{
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  float: left;
 }
 
 .top_recipe_block {
-  background-color: #fff;
   background-color: rgba(255, 255, 255, 0.75);
   display: inline-block;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  list-style: none;
-}
-
-.top_recipe_block p {
-  text-align: center;
-  font-size: 24px;
-  position: relative;
-  margin: 0px;
-  color: #000000;
+  width: 800px;
+  font-weight: bold;
+  z-index: 1;
 }
 
 .top_recipe_block .recipe_icon{
@@ -191,6 +226,18 @@ list-style-type: none;
 
 .recipe_listing{
   display: inline-block;
+  border: 1px solid black;
+}
+
+.scrolling_block{
+  overflow: auto;
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: inline-block;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
 }
 
 .recipe_listing a{
@@ -202,33 +249,52 @@ list-style-type: none;
 }
 
 .dropdown_arrow{
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   float: right;
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
 }
 
-.current_list_button p{
-  display: inline;
-  padding-right: 15px;
+.current_list_button, .account_button{
+  display: inline-block;
+  padding-left: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.arrow_active{
-  transform: rotate(90deg);
-}
 .hide{
   display: none;
 }
 
-#list_overlay{
-  background-color: rgba(48,47,46,0.95);
-  min-height: 500px;
+#list_overlay {
+  background-color: rgba(48,47,46);
+  min-height: 80px;
   width: 500px;
-  position: absolute;
-  right: 0;
   z-index: 1;
-  border: 4px solid black;
-  margin-right: 4px;
   color: #ffffff;
+  position: absolute;
+}
+
+#account_overlay, #recipe_overlay{
+  background-color: rgba(48,47,46);
+  min-height: 80px;
+  width: 200px;
+  z-index: 1;
+  color: #ffffff;
+  position: absolute;
+}
+
+#recipe_overlay{
+  margin-left: 760px;
+}
+
+#dropdown_space{
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  z-index: 1;
 }
 
 #list_overlay a, #list_overlay a:visited{

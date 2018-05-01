@@ -1,38 +1,28 @@
 <div class='text_box'>
 <h1>Enter new recipe details below:</h1>
 <hr>
-<%= form_for(@recipe) do |f| %>
-  <div class='field'>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+
+<form action="<%= recipes_path %>" method="POST">
+  <div id="new_recipe_info_block">
+    <input type="text" name="recipe[name]" placeholder="Recipe Name">
+    <br>
+    <input type="number" name="recipe[servings]" placeholder="Servings">
+    <br>
+    <input type="number" name="recipe[duration]" placeholder="Duration (in minutes)">
+    <br>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name="recipe[directions]" placeholder="Directions"></textarea>
+    <br>
+    <input type="submit" value="Submit This Form">
   </div>
-
-  <div class='field'>
-  <%= f.label :servings %><br />
-    <%= f.number_field :servings %>
+  <div id="add_ingredients_block">
+    <input type="text" name="ingredients[]" placeholder="ingredient">
+    <input type="number" name="quantities[]" placeholder="quantity">
+    <br>
   </div>
+  <button type="button" id="new_ingredient_row">+</button>
+  <br>
+</form>
 
-  <div class='field'>
-  <%= f.label :duration, 'Duration (in minutes)' %><br />
-    <%= f.number_field :duration %>
-  </div>
 
-  <div class='field'>
-    <%= f.label :directions %><br />
-    <%= f.text_area :directions %>
-  </div>
-
-  <div class='actions'>
-    <%= f.submit %>
-  </div>
-
-<% end %>
-
-<% if @errors %>
-  <ul>
-    <% @errors.each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
 </div>

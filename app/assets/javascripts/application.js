@@ -45,15 +45,61 @@
 //     console.log(this.dataset.id)
 //     })
 // }
-$( document ).ready(function() {
-// *************************NAV BAR*********************************
-
-$('.current_list_button').on('click', (event) =>{
-  $('#list_dropdown').toggleClass('arrow_active');
-  $('#list_overlay').toggleClass('hide');
+$.ajaxSetup({
+  cache: true
 });
 
+$( document ).ready(function() {
+  if ($('.pagination').length) {
+  $(window).scroll(function() {
+    var url = $('.pagination .next_page').attr('href');
+    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+      $('.pagination').text("Please Wait...");
+      return $.getScript(url);
+    }
+  });
+  return $(window).scroll();
+}});
+
+// *************************NAV BAR*********************************
+$( document ).ready(function() {
+function hideAll(){
+  $('#account_overlay').hide();
+  $('#list_overlay').hide();
+  $('#recipe_overlay').hide();
+}
+
+$('.account_button').mouseenter(function(){
+  hideAll();
+  $('#account_overlay').show();
+});
+
+$('#account_overlay').mouseleave(function(){
+  hideAll();
+});
+
+$('.current_list_button').mouseenter(function(){
+  hideAll();
+  $('#list_overlay').show();
+});
+
+$('#list_overlay').mouseleave(function(){
+  hideAll();
+});
+
+$('.recipe_button').mouseenter(function(){
+  hideAll();
+  $('#recipe_overlay').show();
+});
+
+$('#recipe_overlay').mouseleave(function(){
+  hideAll();
+});
 // *************************RECIPES*********************************
+
+$('#new_ingredient_row').on('click', (event) =>{
+  $('#add_ingredients_block').append('  <input type="text" name="ingredients[]" placeholder="ingredient"> <input type="number" name="quantities[]" placeholder="quantity"> <br>');
+});
 
 $('.add-ingredient').on('click', (event) =>{
   event.preventDefault();

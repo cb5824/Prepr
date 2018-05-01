@@ -28,6 +28,12 @@ class Recipe < ApplicationRecord
     hearts.destroy
   end
 
+  def parse_ingredients(quantities, items)
+    ingredients = quantities.zip(items)
+    ingredients.delete_if {|listing| listing[1] =~ /^\s*$/ }
+    self.add_ingredients(ingredients)   
+  end
+
   def add_ingredients(ingredient_array)
 
     ingredient_array.each do |ingredient|
