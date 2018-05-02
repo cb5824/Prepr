@@ -24,7 +24,6 @@ feature 'user sees the landing page' do
 
     expect(page).to have_link('Add new recipe')
     expect(page).to have_link('List of all recipes')
-    expect(page).to have_link('Previous List')
 
   end
 
